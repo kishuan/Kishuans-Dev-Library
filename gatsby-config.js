@@ -5,8 +5,11 @@
  */
 
 /**
- * @type {import('gatsby').GatsbyConfig}
+ * @type import('gatsby').GatsbyConfig
  */
+
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -39,5 +42,18 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+      },
+    }, 
+    {
+      resolve: "gatsby-transformer-richtext",
+      options: {
+        // ... other options
+      },
+    }
   ],
 }
