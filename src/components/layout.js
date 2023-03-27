@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
     <Container>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Divider component="div" role="presentation">
-        My Story & Work
+        Grow with me.
       </Divider>
       <Breadcrumbs
         aria-label="breadcrumb"
