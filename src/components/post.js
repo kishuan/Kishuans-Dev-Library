@@ -8,8 +8,8 @@ const Post = ({ title, description, updatedAt }) => {
       <Box
         sx={{
           "&:hover": {
-            boxShadow: 1,
-            borderRadius: 1,
+            boxShadow: 3,
+            borderRadius: 1
           },
           maxWidth: `false`,
           width: `100%`,

@@ -1,8 +1,10 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Stack from "@mui/material/Stack"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
+import Breadcrumbs from "@mui/material/Breadcrumbs"
+import { useState, useEffect } from "react"
+import Switch from "@mui/material/Switch"
 
 import "./layout.css"
 
@@ -20,30 +22,54 @@ const Layout = ({ children }) => {
     }
   `)
 
-  return (
-    <div>
-      <Container>
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <Divider component="div" role="presentation">
-          My Story & Work
-        </Divider>
+  const [checked, setChecked] = useState(false)
 
-        <Stack direction="row" spacing={2}>
-          <Link to="/">Home</Link>
-          <Link to="/">About</Link>
-          <Link to="/">Projects</Link>
-        </Stack>
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-5)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} &middot;
-        </footer>
-      </Container>
-    </div>
+  const handleChange = () => {
+    setChecked(!checked)
+  }
+
+  useEffect(() => {
+    const body = document.querySelector("body")
+    body.style.backgroundColor = checked ? "#474E68" : "#ECF2FF"
+    body.style.color = checked ? "#ECF2FF" : "#474E68"
+
+    const links = document.querySelectorAll("a")
+    links.forEach(link => {
+      link.style.color = checked ? "#ECF2FF" : "#474E68"
+    })
+  }, [checked])
+
+  return (
+    <Container>
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Divider component="div" role="presentation">
+        My Story & Work
+      </Divider>
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        spacing={3}
+        sx={{ fontFamily: `courier new` }}
+      >
+        <Link to="/">Home</Link>
+        <Link to="/">About</Link>
+        <Link to="/">Projects</Link>
+        <Switch
+        checked={checked}
+        onChange={handleChange}
+        inputProps={{ "aria-label": "controlled" }}
+        color="default"
+      />
+      </Breadcrumbs>
+      <main>{children}</main>
+      <footer
+        style={{
+          marginTop: `var(--space-5)`,
+          fontSize: `var(--font-sm)`,
+        }}
+      >
+        © {new Date().getFullYear()} &middot; kishuan's.
+      </footer>
+    </Container>
   )
 }
 
