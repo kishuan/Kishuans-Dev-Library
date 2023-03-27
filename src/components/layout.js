@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
       <Container>
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <Divider component="div" role="presentation">
-          Kishuan Matteo
+          My Story & Work
         </Divider>
 
         <Stack direction="row" spacing={2}>

@@ -8,13 +8,14 @@ const Posts = () => (
   <StaticQuery
     query={graphql`
       query {
-        allContentfulPost {
+        allContentfulPost(sort: {fields: updatedAt, order: DESC}) { 
           nodes {
             id
             title
             description {
               raw
             }
+            updatedAt
           }
         }
       }
@@ -26,6 +27,7 @@ const Posts = () => (
             key={post.id}
             title={post.title}
             description={post.description}
+            updatedAt={post.updatedAt}
           />
         ))}
       </Stack>

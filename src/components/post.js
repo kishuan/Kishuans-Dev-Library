@@ -2,7 +2,7 @@ import React from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Box from "@mui/material/Box"
 
-const Post = ({ title, description }) => {
+const Post = ({ title, description, updatedAt }) => {
   return (
     <item>
       <Box
@@ -23,6 +23,7 @@ const Post = ({ title, description }) => {
         <h2>{title}</h2>
         <hr></hr>
           {documentToReactComponents(JSON.parse(description.raw))}
+          <p>Last published at: {updatedAt}</p>
       </Box>
     </item>
   )
