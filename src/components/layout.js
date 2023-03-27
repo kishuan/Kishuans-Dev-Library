@@ -51,8 +51,8 @@ const Layout = ({ children }) => {
         sx={{ fontFamily: `courier new` }}
       >
         <Link to="/">Home</Link>
-        <Link to="/">About</Link>
-        <Link to="/">Projects</Link>
+        <Link to="/about">About</Link>
+        <Link to="/projects">Projects</Link>
         <Switch
         checked={checked}
         onChange={handleChange}
