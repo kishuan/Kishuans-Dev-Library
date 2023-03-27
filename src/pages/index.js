@@ -5,13 +5,15 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 // import * as styles from "../components/index.module.css"
 
+import Container from "@mui/material/Container"
+
 
 
 const IndexPage = () => (
   <Layout>
-      <div>
+      <Container>
         <Posts/>
-      </div>
+      </Container>
   </Layout>
 )
 

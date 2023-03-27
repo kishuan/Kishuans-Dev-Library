@@ -15,7 +15,7 @@ const Header = ({ siteTitle }) => (
       to="/"
       style={{
         fontSize: `var(--font-lg)`,
-        textDecoration: `none`,
+        textDecoration: `none`, 
       }}
     >
       {siteTitle}

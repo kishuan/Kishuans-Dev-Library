@@ -1,5 +1,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import Stack from "@mui/material/Stack"
+import Container from "@mui/material/Container"
+import Divider from "@mui/material/Divider"
 
 import "./layout.css"
 
@@ -18,15 +21,18 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <ul style={{display: `flex`, justifyContent: `start`, gap: `0.5em`}}>
-        <Link to="/">Home</Link>
-        <Link to="/">About</Link>
-        <Link to="/">Projects</Link>
-      </ul>
-      <hr></hr>
-      <div>
+    <div>
+      <Container>
+        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Divider component="div" role="presentation">
+          Kishuan Matteo
+        </Divider>
+
+        <Stack direction="row" spacing={2}>
+          <Link to="/">Home</Link>
+          <Link to="/">About</Link>
+          <Link to="/">Projects</Link>
+        </Stack>
         <main>{children}</main>
         <footer
           style={{
@@ -36,8 +42,8 @@ const Layout = ({ children }) => {
         >
           © {new Date().getFullYear()} &middot;
         </footer>
-      </div>
-    </>
+      </Container>
+    </div>
   )
 }
 
