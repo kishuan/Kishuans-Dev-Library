@@ -4,7 +4,7 @@ import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Breadcrumbs from "@mui/material/Breadcrumbs"
 import { Link } from "gatsby"
-import useDayNightMode from "./useDayNightMode"
+import useDayNightMode from "./usedaynightmode"
 import Switch from "@mui/material/Switch"
 
 import "./layout.css"
