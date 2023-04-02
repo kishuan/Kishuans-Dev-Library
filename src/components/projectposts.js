@@ -8,7 +8,9 @@ const ProjectPosts = () => {
     query ProjectPostsQuery {
       allContentfulPost(
         filter: {
-          metadata: { tags: { elemMatch: { contentful_id: { eq: "project" } } } }
+          metadata: {
+            tags: { elemMatch: { contentful_id: { eq: "project" } } }
+          }
         }
         sort: { updatedAt: DESC }
       ) {
@@ -31,18 +33,20 @@ const ProjectPosts = () => {
   `)
 
   return (
-    <Stack sx={{ justifyContent: `center` }}>
-      {data.allContentfulPost.nodes.map(post => (
-        <Post
-          key={post.id}
-          title={post.title}
-          description={post.description}
-          updatedAt={post.updatedAt}
-        />
-      ))}
-    </Stack>
+      <Stack sx={{ justifyContent: `center` }}>
+        {data.allContentfulPost.nodes.map(post => (
+          <Post
+            key={post.id}
+            title={post.title}
+            description={post.description}
+            updatedAt={post.updatedAt}
+            tag={post.metadata.tags.map(tag => (
+              <span key={tag.id}>{tag.name}</span>
+            ))}
+          />
+        ))}
+      </Stack>
   )
 }
 
 export default ProjectPosts
-

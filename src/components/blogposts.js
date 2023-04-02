@@ -32,17 +32,19 @@ const BlogPosts = () => {
 
   return (
     <Stack sx={{ justifyContent: `center` }}>
-      {data.allContentfulPost.nodes.map(post => (
-        <Post
-          key={post.id}
-          title={post.title}
-          description={post.description}
-          updatedAt={post.updatedAt}
-        />
-      ))}
+        {data.allContentfulPost.nodes.map(post => (
+          <Post
+            key={post.id}
+            title={post.title}
+            description={post.description}
+            updatedAt={post.updatedAt}
+            tag={post.metadata.tags.map(tag => (
+              <span key={tag.id}>{tag.name}</span>
+            ))}
+          />
+        ))}
     </Stack>
   )
 }
 
 export default BlogPosts
-
