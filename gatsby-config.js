@@ -57,6 +57,14 @@ module.exports = {
       options: {
         accessToken: CONTENTFUL_ACCESS_TOKEN,
         spaceId: CONTENTFUL_SPACE_ID,
+        enableTags: true,
+      },
+    },
+    {
+      resolve: "dotenv-webpack",
+      options: {
+        // load .env.* files based on the NODE_ENV environment variable
+        path: `.env.${process.env.NODE_ENV}`,
       },
     },
   ],

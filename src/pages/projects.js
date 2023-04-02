@@ -1,13 +1,15 @@
 import * as React from "react"
+import ProjectPosts from "../components/projectposts"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Container from "@mui/material/Container"
 
 
+
 const ProjectsPage = () => (
   <Layout>
       <Container>
-        Coming Soon!
+        <ProjectPosts/>
       </Container>
   </Layout>
 )

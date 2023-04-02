@@ -4,7 +4,6 @@ import Box from "@mui/material/Box"
 
 const Post = ({ title, description, updatedAt }) => {
   return (
-    <item>
       <Box
         sx={{
           "&:hover": {
@@ -25,7 +24,6 @@ const Post = ({ title, description, updatedAt }) => {
           {documentToReactComponents(JSON.parse(description.raw))}
           <p>Last published at: {updatedAt}</p>
       </Box>
-    </item>
   )
 }
 

@@ -1,5 +1,5 @@
 import * as React from "react"
-import Posts from "../components/posts"; // import the Post component
+import BlogPosts from "../components/blogposts"; // import the Post component
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -12,7 +12,7 @@ import Container from "@mui/material/Container"
 const IndexPage = () => (
   <Layout>
       <Container>
-        <Posts/>
+        <BlogPosts/>
       </Container>
   </Layout>
 )
