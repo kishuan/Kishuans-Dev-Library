@@ -6,6 +6,13 @@ import Breadcrumbs from "@mui/material/Breadcrumbs"
 import { Link } from "gatsby"
 import useDayNightMode from "./usedaynightmode"
 import Switch from "@mui/material/Switch"
+import Grid from "@mui/material/Grid"
+import Stack from "@mui/material/Stack"
+import Contact from "./contact.js"
+
+//icons
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import YouTubeIcon from "@mui/icons-material/YouTube"
 
 import "./layout.css"
 
@@ -57,7 +64,37 @@ const Layout = ({ children }) => {
             fontSize: `var(--font-sm)`,
           }}
         >
-          © {new Date().getFullYear()} &middot; kishuan's.
+          <Grid
+            container
+            spacing={{ xs: 1, md: 2 }}
+            columns={{ xs: 4, sm: 8, md: 12 }}
+            sx={{ justifyContent: `center` }}
+          >
+            <Grid item xs={2}>
+            <Contact/>
+            </Grid>
+            <Grid item xs={2}>
+              © {new Date().getFullYear()} &middot; kishuan's.
+            </Grid>
+            <Grid item xs={2}>
+              <Stack direction="row" spacing={1}>
+                <a
+                  href="https://www.linkedin.com/in/kishuan-espiritu/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <LinkedInIcon />
+                </a>
+                <a
+                  href="https://www.youtube.com/@kishuan7355"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <YouTubeIcon />
+                </a>
+              </Stack>
+            </Grid>
+          </Grid>
         </footer>
       </Container>
     </>
