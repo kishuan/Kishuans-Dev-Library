@@ -1,17 +1,38 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Container from "@mui/material/Container"
+import Paper from "@mui/material/Paper"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { useStaticQuery, graphql } from "gatsby"
 
+const AboutPage = () => {
+  const data = useStaticQuery(graphql`
+    query ProfileQuery {
+      allContentfulProfile {
+        nodes {
+          id
+          title
+          subtitle
+          description
+        }
+      }
+    }
+  `)
 
-
-const AboutPage = () => (
-  <Layout>
-      <Container>
-        Coming Soon!
-      </Container>
-  </Layout>
-)
+  return (
+    <Layout>
+      {data.allContentfulProfile.nodes.map((profile) => (
+        <Paper key={profile.id} variant="outlined">
+          <h2>{profile.title}</h2>
+          <h3>{profile.subtitle}</h3>
+          <div>
+            {documentToReactComponents(JSON.parse(profile.description))}
+          </div>
+        </Paper>
+      ))}
+    </Layout>
+  )
+}
 
 /**
  * Head export to define metadata for the page

@@ -29,11 +29,15 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [isDarkMode, setIsDarkMode] = useDayNightMode()
+  const [isDarkMode, toggleTheme] = useDayNightMode()
 
-  const handleChange = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+  React.useEffect(() => {
+    const initialMode = isDarkMode ? "dark-mode" : ""
+    if (initialMode) {
+      document.body.classList.add(initialMode)
+      document.documentElement.classList.add(initialMode)
+    }
+  }, [isDarkMode])
 
   return (
     <>
@@ -42,6 +46,12 @@ const Layout = ({ children }) => {
         <Divider component="div" role="presentation">
           on responsible innovation.
         </Divider>
+        <Switch
+          checked={isDarkMode}
+          onChange={toggleTheme}
+          inputProps={{ "aria-label": "controlled" }}
+          color="default"
+        />
         <Breadcrumbs
           aria-label="breadcrumb"
           spacing={3}
@@ -50,12 +60,6 @@ const Layout = ({ children }) => {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/projects">Projects</Link>
-          <Switch
-            checked={isDarkMode}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-            color="default"
-          />
         </Breadcrumbs>
         <main>{children}</main>
         <footer
@@ -71,7 +75,7 @@ const Layout = ({ children }) => {
             sx={{ justifyContent: `center` }}
           >
             <Grid item xs={2}>
-            <Contact/>
+              <Contact />
             </Grid>
             <Grid item xs={2}>
               © {new Date().getFullYear()} &middot; kishuan's.

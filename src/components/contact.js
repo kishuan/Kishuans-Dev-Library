@@ -1,6 +1,5 @@
 import React from "react"
 import { useForm, ValidationError } from "@formspree/react"
-import Box from "@mui/material/Box"
 import Paper from "@mui/material/Paper"
 import Chip from "@mui/material/Chip"
 import Button from "@mui/material/Button"
@@ -57,7 +56,7 @@ function Contact() {
 function ContactForm() {
   const [state, handleSubmit] = useForm("xrgjewbb")
   if (state.succeeded) {
-    return <Typography variant="h6">Thanks for joining!</Typography>
+    return <Typography variant="h6">Thank you for your message! I'll be in contact shortly.</Typography>
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -75,6 +74,15 @@ function ContactForm() {
           name="email"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
+        <TextField
+          id="subject"
+          label="Subject"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="subject"
+        />
+        <ValidationError prefix="Subject" field="subject" errors={state.errors} />
         <TextField
           id="message"
           label="Message"

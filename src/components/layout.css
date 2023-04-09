@@ -270,3 +270,42 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+/* Define light mode styles */
+.light-mode {
+  background-color: #ECF2FF;
+  color: #474E68;
+}
+
+.light-mode a {
+  color: #474E68;
+}
+
+/* Define dark mode styles */
+.dark-mode {
+  background-color: #474E68;
+  color: #ECF2FF;
+}
+
+.dark-mode a {
+  color: #ECF2FF;
+}
+
+/* Apply the appropriate styles based on the value of isDarkMode */
+body.light-mode {
+  background-color: #ECF2FF;
+  color: #474E68;
+}
+
+body.dark-mode {
+  background-color: #474E68;
+  color: #ECF2FF;
+}
+
+:root.light-mode {
+  background-color: #ECF2FF;
+}
+
+:root.dark-mode {
+  background-color: #474E68;
+}
