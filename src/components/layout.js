@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Container>
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Header siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`} />
         <Divider component="div" role="presentation">
           on responsible innovation.
         </Divider>
@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
           sx={{ fontFamily: `courier new` }}
         >
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
+          <Link to="/blog">Blog</Link>
           <Link to="/projects">Projects</Link>
         </Breadcrumbs>
         <main>{children}</main>

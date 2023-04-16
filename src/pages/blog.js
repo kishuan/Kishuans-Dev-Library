@@ -1,15 +1,17 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-// import * as styles from "../components/index.module.css"
-import AboutMe from "../components/aboutMe"
-import Profile from "../components/profile"
+import Paper from "@mui/material/Paper"
+import { useStaticQuery, graphql } from "gatsby"
+import Stack from "@mui/material/Stack"
 import Container from "@mui/material/Container"
+import BlogPosts from "../components/blogposts" // import the Post component
 
-const IndexPage = () => (
+
+const AboutMe = () => (
   <Layout>
     <Container>
-      <AboutMe/>
+      <BlogPosts />
     </Container>
   </Layout>
 )
@@ -19,6 +21,6 @@ const IndexPage = () => (
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="Home" />
+export const Head = () => <Seo title="Blog" />
 
-export default IndexPage
+export default AboutMe

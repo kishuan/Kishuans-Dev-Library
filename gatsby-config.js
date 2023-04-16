@@ -22,9 +22,9 @@ if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
 module.exports = {
   siteMetadata: {
     title: `Kishuan's Dev Library`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    description: `a repository of Kishuan's development projects and blog posts.`,
+    author: `@kishuan`,
+    siteUrl: `https://kishuan.gatsbyjs.io/`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -66,5 +66,7 @@ module.exports = {
         path: `.env.${process.env.NODE_ENV}`,
       },
     },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
   ],
 }

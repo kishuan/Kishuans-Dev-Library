@@ -26,7 +26,7 @@ function useDayNightMode() {
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
       const img = document.getElementById("kish-icon");
       if (img) {
-        img.src = icon;
+        img.src = icon.toString();
       }
     }
   }, [isDarkMode]);
@@ -41,16 +41,16 @@ function useDayNightMode() {
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
     }
-  }, []);
+  }, [isDarkMode]);
 
   // update the icon on initial render
   useEffect(() => {
     const icon = isDarkMode ? Light_Icon : Dark_Icon;
     const img = document.getElementById("kish-icon");
     if (img) {
-      img.src = icon;
+      img.src = icon.toString();
     }
-  }, []);
+  }, [isDarkMode]);
 
   return [isDarkMode, toggleTheme];
 }

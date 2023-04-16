@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
-import useDayNightMode from "./usedaynightmode";
 
 
 const Header = ({ siteTitle }) => {
-  const [icon] = useDayNightMode();
-
   return (
     <header
       style={{
@@ -30,7 +27,7 @@ const Header = ({ siteTitle }) => {
         height={90}
         style={{ margin: 0 }}
         id="kish-icon"
-        src={icon}
+        src="../images/KishIcon_Outlined.png"
       />
     </header>
   );
