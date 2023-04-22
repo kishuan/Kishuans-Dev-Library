@@ -7,19 +7,19 @@ import Stack from "@mui/material/Stack"
 const Post = ({ title, description, updatedAt, tag }) => {
   return (
     <Box
-      sx={{
-        "&:hover": {
-          boxShadow: 3,
-          borderRadius: 1,
-        },
-        maxWidth: `false`,
-        width: `100%`,
-        alignItems: `center`,
-        textAlign: `left`,
-        border: `1em`,
-        margin: `0.5em`,
-        padding: `1em`,
-      }}
+      // sx={{
+      //   "&:hover": {
+      //     boxShadow: 3,
+      //     borderRadius: 1,
+      //   },
+      //   maxWidth: `false`,
+      //   width: `100%`,
+      //   alignItems: `center`,
+      //   textAlign: `left`,
+      //   border: `1em`,
+      //   margin: `0.5em`,
+      //   padding: `1em`,
+      // }}
     >
       <div id="post_title">
         <h2>{title} </h2>

@@ -1,9 +1,6 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Paper from "@mui/material/Paper"
-import { useStaticQuery, graphql } from "gatsby"
-import Stack from "@mui/material/Stack"
 import Container from "@mui/material/Container"
 import BlogPosts from "../components/blogposts" // import the Post component
 

@@ -57,6 +57,7 @@ module.exports = {
         accessToken: CONTENTFUL_ACCESS_TOKEN,
         spaceId: CONTENTFUL_SPACE_ID,
         enableTags: true,
+        downloadLocal: true,
       },
     },
     {

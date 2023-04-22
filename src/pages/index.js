@@ -3,7 +3,6 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 // import * as styles from "../components/index.module.css"
 import AboutMe from "../components/aboutMe"
-import Profile from "../components/profile"
 import Container from "@mui/material/Container"
 
 const IndexPage = () => (

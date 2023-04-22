@@ -1,9 +1,12 @@
 import React from 'react';
-import Img from 'gatsby-image';
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
+// import { GatsbyImage, getImage } from "gatsby-plugin-image"
+// import Img from 'gatsby-image';
+
+// this component defines the layout for a Profile
 
 const Profile = ({ title, description, updatedAt, tag }) => {
   return (

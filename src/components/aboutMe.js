@@ -1,10 +1,10 @@
 import * as React from "react"
-import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Paper from "@mui/material/Paper"
 import { useStaticQuery, graphql } from "gatsby"
 import Profile from "./profile.js"
 import Stack from "@mui/material/Stack"
+
+// this component queries all posts with the "Profile" tag to display in an About Me section
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
@@ -36,19 +36,19 @@ const AboutMe = () => {
   `)
 
   return (
-      <Stack sx={{ justifyContent: `center` }}>
-        {data.allContentfulPost.nodes.map(post => (
-          <Profile
-            key={post.id}
-            title={post.title}
-            description={post.description}
-            updatedAt={post.updatedAt}
-            tag={post.metadata.tags.map(tag => (
-              <span key={tag.id}>{tag.name}</span>
-            ))}
-          />
-        ))}
-      </Stack>
+    <Stack sx={{ justifyContent: `center` }}>
+      {data.allContentfulPost.nodes.map(post => (
+        <Profile
+          key={post.id}
+          title={post.title}
+          description={post.description}
+          updatedAt={post.updatedAt}
+          tag={post.metadata.tags.map(tag => (
+            <span key={tag.id}>{tag.name}</span>
+          ))}
+        />
+      ))}
+    </Stack>
   )
 }
 
