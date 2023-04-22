@@ -109,7 +109,7 @@ const ProjectPosts = () => {
                 <ExpandMoreIcon />
               </ExpandMore>
             </CardActions>
-            <Collapse in={expanded === post.id} timeout="auto" unmountOnExit>
+            <Collapse in={expanded === post.id} unmountOnExit>
               <CardContent>
                 <Post
                   key={post.id}
