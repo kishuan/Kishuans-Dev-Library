@@ -7,6 +7,7 @@ import { Link } from "gatsby"
 import useDayNightMode from "./usedaynightmode"
 import Switch from "@mui/material/Switch"
 import Footer from "./footer"
+import Box from "@mui/material/Box"
 
 import "./layout.css"
 
@@ -42,23 +43,25 @@ const Layout = ({ children }) => {
         <Divider component="div" role="presentation">
           on responsible innovation.
         </Divider>
-        <Switch
-          checked={isDarkMode}
-          onChange={toggleTheme}
-          inputProps={{ "aria-label": "controlled" }}
-          color="default"
-        />
-        <Breadcrumbs
-          aria-label="breadcrumb"
-          spacing={3}
-          sx={{ fontFamily: `courier new` }}
-        >
-          <Link to="/">Home</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/projects">Projects</Link>
-        </Breadcrumbs>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Breadcrumbs
+            aria-label="breadcrumb"
+            spacing={3}
+            sx={{ fontFamily: `courier new` }}
+          >
+            <Link to="/">Home</Link>
+            <Link to="/blog">Blog</Link>
+            <Link to="/projects">Projects</Link>
+          </Breadcrumbs>
+          <Switch
+            checked={isDarkMode}
+            onChange={toggleTheme}
+            inputProps={{ "aria-label": "controlled" }}
+            color="default"
+          />
+        </Box>
         <main>{children}</main>
-       <Footer/>
+        <Footer/>
       </Container>
     </>
   )
