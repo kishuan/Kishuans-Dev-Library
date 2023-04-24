@@ -7,6 +7,8 @@ import Modal from "@mui/material/Modal"
 import Container from "@mui/material/Container"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import CloseIcon from "@mui/icons-material/Close"
 
 const style = {
   position: "absolute",
@@ -29,16 +31,20 @@ function Contact() {
     <div>
       <Chip
         sx={{
-          backgroundColor: `#F5F3C1`,
-          color: `#333`,
+          backgroundColor: "#474E68",
+          color: "#ECF2FF",
+
           "&:hover": {
-            backgroundColor: `#edea90`,
-            color: `#474E68`
+            backgroundColor: "#474E68",
+            color: "#F0F0F0",
           },
+          border: "1px solid #F0F0F0",
         }}
         label="contact me"
         onClick={handleOpen}
+        outlined
       />
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -46,6 +52,16 @@ function Contact() {
         aria-describedby="modal-modal-description"
       >
         <Paper sx={style}>
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+            }}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
           <ContactForm />
         </Paper>
       </Modal>
@@ -56,7 +72,11 @@ function Contact() {
 function ContactForm() {
   const [state, handleSubmit] = useForm("xrgjewbb")
   if (state.succeeded) {
-    return <Typography variant="h6">Thank you for your message! I'll be in contact shortly.</Typography>
+    return (
+      <Typography variant="h6">
+        Thank you for your message! I'll be in contact shortly.
+      </Typography>
+    )
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -82,7 +102,11 @@ function ContactForm() {
           margin="normal"
           name="subject"
         />
-        <ValidationError prefix="Subject" field="subject" errors={state.errors} />
+        <ValidationError
+          prefix="Subject"
+          field="subject"
+          errors={state.errors}
+        />
         <TextField
           id="message"
           label="Message"
