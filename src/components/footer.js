@@ -1,10 +1,10 @@
-import * as React from "react"
-import Grid from "@mui/material/Grid"
-import Contact from "./contact.js"
+import * as React from "react";
+import Grid from "@mui/material/Grid";
+import Contact from "./contact.js";
 
 //icons
-import LinkedInIcon from "@mui/icons-material/LinkedIn"
-import YouTubeIcon from "@mui/icons-material/YouTube"
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function Footer() {
   return (
@@ -30,6 +30,7 @@ function Footer() {
             href="https://www.linkedin.com/in/kishuan-espiritu/"
             target="_blank"
             rel="noreferrer"
+            style={{ marginRight: "1rem" }}
           >
             <LinkedInIcon />
           </a>
@@ -37,13 +38,14 @@ function Footer() {
             href="https://www.youtube.com/@kishuan7355"
             target="_blank"
             rel="noreferrer"
+            style={{ marginRight: "1rem" }}
           >
             <YouTubeIcon />
           </a>
         </Grid>
       </Grid>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
