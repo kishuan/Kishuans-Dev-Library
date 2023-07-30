@@ -291,6 +291,10 @@ footer {
   color: #ECF2FF;
 }
 
+#projectPost a {
+  color: #474E68;
+}
+
 /* Apply the appropriate styles based on the value of isDarkMode */
 body.light-mode {
   background-color: #ECF2FF;

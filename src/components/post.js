@@ -7,19 +7,9 @@ import Stack from "@mui/material/Stack"
 const Post = ({ title, description, updatedAt, tag }) => {
   return (
     <Box
-      // sx={{
-      //   "&:hover": {
-      //     boxShadow: 3,
-      //     borderRadius: 1,
-      //   },
-      //   maxWidth: `false`,
-      //   width: `100%`,
-      //   alignItems: `center`,
-      //   textAlign: `left`,
-      //   border: `1em`,
-      //   margin: `0.5em`,
-      //   padding: `1em`,
-      // }}
+      sx={{
+        color: `#474E68`,
+      }}
     >
       <div id="post_title">
         <h2>{title} </h2>
@@ -27,7 +17,6 @@ const Post = ({ title, description, updatedAt, tag }) => {
       <hr></hr>
       <div>{documentToReactComponents(JSON.parse(description.raw))}</div>
       <hr></hr>
-
       <Stack direction="row" spacing={1}>
         <Chip
           sx={{

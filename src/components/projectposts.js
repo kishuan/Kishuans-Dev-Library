@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography"
 
 // import icons
 import IconButton from "@mui/material/IconButton"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMoreRounded"
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props
@@ -79,7 +79,7 @@ const ProjectPosts = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: 2,
+          gap: 1,
         }}
       >
         {data.allContentfulPost.nodes.map(post => (
@@ -87,12 +87,14 @@ const ProjectPosts = () => {
             key={post.id}
             sx={expanded === post.id ? expandedCardStyle : unexpandedCardStyle}
             variant="outlined"
+            id="projectPost"
           >
             {expanded !== post.id && (
               <>
-                <CardContent>{post.title}</CardContent>
+                <CardContent><h3>{post.title}</h3></CardContent>
+                <hr/>
                 <CardContent>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2">
                     {post.preview.preview}...
                   </Typography>
                 </CardContent>
@@ -106,11 +108,12 @@ const ProjectPosts = () => {
                 aria-expanded={expanded === post.id}
                 aria-label="show more"
               >
-                <ExpandMoreIcon />
+                <ExpandMoreIcon/>
               </ExpandMore>
             </CardActions>
             <Collapse in={expanded === post.id} unmountOnExit>
               <CardContent>
+              <hr/>
                 <Post
                   key={post.id}
                   title={post.title}

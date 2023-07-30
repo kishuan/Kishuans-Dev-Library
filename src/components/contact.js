@@ -29,22 +29,21 @@ function Contact() {
 
   return (
     <div>
-    <Chip
-  sx={{
-    backgroundColor: "#474E68",
-    color: "#ECF2FF",
-    "&:hover": {
-      backgroundColor: "#474E68",
-      color: "#F0F0F0",
-    },
-    border: "1px solid #F0F0F0",
-    borderRadius: "4px" // set the border radius to 4px
-  }}
-  label="contact me"
-  onClick={handleOpen}
-  outlined
-/>
-
+      <Chip
+        sx={{
+          backgroundColor: "#474E68",
+          color: "#ECF2FF",
+          "&:hover": {
+            backgroundColor: "#474E68",
+            color: "#F0F0F0",
+          },
+          border: "1px solid #F0F0F0",
+          borderRadius: "4px", // set the border radius to 4px
+        }}
+        label="contact me"
+        onClick={handleOpen}
+        outlined
+      />
 
       <Modal
         open={open}
