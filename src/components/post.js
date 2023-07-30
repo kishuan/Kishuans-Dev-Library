@@ -7,9 +7,6 @@ import Stack from "@mui/material/Stack"
 const Post = ({ title, description, updatedAt, tag }) => {
   return (
     <Box
-      sx={{
-        color: `#474E68`,
-      }}
     >
       <div id="post_title">
         <h2>{title} </h2>
