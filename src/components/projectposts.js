@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreRounded"
 
-const ExpandMore = styled(props => {
+const ExpandMore = styled((props) => {
   const { expand, ...other } = props
   return <IconButton {...other} />
 })(({ theme, expand }) => ({
@@ -67,10 +67,16 @@ const ProjectPosts = () => {
   const expandedCardStyle = {
     gridColumn: "1 / -1",
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   }
 
   const unexpandedCardStyle = {
     minWidth: 300,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   }
 
   return (
@@ -82,49 +88,55 @@ const ProjectPosts = () => {
           gap: 1,
         }}
       >
-        {data.allContentfulPost.nodes.map(post => (
+        {data.allContentfulPost.nodes.map((post) => (
           <Card
             key={post.id}
             sx={expanded === post.id ? expandedCardStyle : unexpandedCardStyle}
             variant="outlined"
             id="projectPost"
           >
-            {expanded !== post.id && (
-              <>
-                <CardContent><h3>{post.title}</h3></CardContent>
-                <hr/>
-                <CardContent>
-                  <Typography variant="body2">
-                    {post.preview.preview}...
-                  </Typography>
-                </CardContent>
-              </>
-            )}
+            <Box>
+              {expanded !== post.id && (
+                <>
+                  <CardContent>
+                    <h3>{post.title}</h3>
+                  </CardContent>
+                  <hr />
+                  <CardContent>
+                    <Typography variant="body2">
+                      {post.preview.preview}...
+                    </Typography>
+                  </CardContent>
+                </>
+              )}
+            </Box>
 
-            <CardActions>
-              <ExpandMore
-                expand={expanded === post.id}
-                onClick={() => handleExpandClick(post.id)}
-                aria-expanded={expanded === post.id}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon/>
-              </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded === post.id} unmountOnExit>
-              <CardContent>
-              <hr/>
-                <Post
-                  key={post.id}
-                  title={post.title}
-                  description={post.description}
-                  updatedAt={post.updatedAt}
-                  tag={post.metadata.tags.map(tag => (
-                    <span key={tag.id}>{tag.name}</span>
-                  ))}
-                />
-              </CardContent>
-            </Collapse>
+            <Box>
+              <CardActions disableSpacing>
+                <ExpandMore
+                  expand={expanded === post.id}
+                  onClick={() => handleExpandClick(post.id)}
+                  aria-expanded={expanded === post.id}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore>
+              </CardActions>
+              <Collapse in={expanded === post.id} unmountOnExit>
+                <CardContent>
+                  <hr />
+                  <Post
+                    key={post.id}
+                    title={post.title}
+                    description={post.description}
+                    updatedAt={post.updatedAt}
+                    tag={post.metadata.tags.map((tag) => (
+                      <span key={tag.id}>{tag.name}</span>
+                    ))}
+                  />
+                </CardContent>
+              </Collapse>
+            </Box>
           </Card>
         ))}
       </Box>
