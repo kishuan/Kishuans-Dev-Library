@@ -1,6 +1,6 @@
 import React from "react"
 import { useForm, ValidationError } from "@formspree/react"
-import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
 import Button from "@mui/material/Button"
 import Modal from "@mui/material/Modal"
@@ -9,18 +9,6 @@ import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import CloseIcon from "@mui/icons-material/Close"
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-}
 
 function Contact() {
   const [open, setOpen] = React.useState(false)
@@ -51,7 +39,20 @@ function Contact() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Paper sx={style}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",  // 80% of the viewport's width
+            maxWidth: "800px",  // will not exceed 800px
+            bgcolor: "background.paper",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
           <IconButton
             sx={{
               position: "absolute",
@@ -63,7 +64,7 @@ function Contact() {
             <CloseIcon />
           </IconButton>
           <ContactForm />
-        </Paper>
+        </Box>
       </Modal>
     </div>
   )
@@ -85,6 +86,15 @@ function ContactForm() {
           Contact me
         </Typography>
         <TextField
+          id="name"
+          label="Full Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="name"
+        />
+        <ValidationError prefix="Name" field="name" errors={state.errors} />
+        <TextField
           id="email"
           label="Email Address"
           type="email"
@@ -95,33 +105,61 @@ function ContactForm() {
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
         <TextField
-          id="subject"
-          label="Subject"
+          id="phoneNumber"
+          label="Phone Number"
           variant="outlined"
           fullWidth
           margin="normal"
-          name="subject"
+          name="phoneNumber"
         />
-        <ValidationError
-          prefix="Subject"
-          field="subject"
-          errors={state.errors}
-        />
+        <ValidationError prefix="Phone Number" field="phoneNumber" errors={state.errors} />
         <TextField
-          id="message"
-          label="Message"
+          id="companyName"
+          label="Company Name"
           variant="outlined"
           fullWidth
           margin="normal"
-          name="message"
+          name="companyName"
+        />
+        <ValidationError prefix="Company Name" field="companyName" errors={state.errors} />
+        <TextField
+          id="jobTitle"
+          label="Job Title"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="jobTitle"
+        />
+        <ValidationError prefix="Job Title" field="jobTitle" errors={state.errors} />
+        <TextField
+          id="website"
+          label="Website"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="website"
+        />
+        <ValidationError prefix="Website" field="website" errors={state.errors} />
+        <TextField
+          id="areaOfInterest"
+          label="Area of Interest"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="areaOfInterest"
+        />
+        <ValidationError prefix="Area of Interest" field="areaOfInterest" errors={state.errors} />
+        <TextField
+          id="description"
+          label="Description"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="description"
           multiline
           rows={4}
         />
-        <ValidationError
-          prefix="Message"
-          field="message"
-          errors={state.errors}
-        />
+        <ValidationError prefix="Description" field="description" errors={state.errors} />
         <Button variant="contained" type="submit" disabled={state.submitting}>
           Submit
         </Button>
