@@ -110,8 +110,8 @@ const ProjectPosts = () => {
                 </>
               )}
             </Box>
-
             <Box>
+            <hr/>
               <CardActions disableSpacing>
                 <ExpandMore
                   expand={expanded === post.id}
