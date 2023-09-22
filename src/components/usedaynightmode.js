@@ -2,56 +2,38 @@ import { useState, useEffect } from "react";
 import Dark_Icon from "../images/KishIcon_Outlined.png";
 import Light_Icon from "../images/KishIcon_Outlined_Light.png";
 
+// Importing the icons directly in the component file to preload them during SSR
+import "../images/KishIcon_Outlined.png";
+import "../images/KishIcon_Outlined_Light.png";
+
 function useDayNightMode() {
-  // Check if we're running in a browser environment (not during server-side rendering)
-  const isBrowser = typeof window !== "undefined";
-
-  // Check if the icons are already in local storage
-  const darkIcon = isBrowser ? localStorage.getItem("darkIcon") : null;
-  const lightIcon = isBrowser ? localStorage.getItem("lightIcon") : null;
-
-  // Preload the icons if they're not in local storage
-  if (isBrowser && (!darkIcon || !lightIcon)) {
-    const darkIconImage = new Image();
-    darkIconImage.src = Dark_Icon;
-    darkIconImage.onload = () => {
-      localStorage.setItem("darkIcon", Dark_Icon);
-    };
-
-    const lightIconImage = new Image();
-    lightIconImage.src = Light_Icon;
-    lightIconImage.onload = () => {
-      localStorage.setItem("lightIcon", Light_Icon);
-    };
-  }
-
   const [isDarkMode, setIsDarkMode] = useState(
-    isBrowser &&
+    typeof window !== "undefined" &&
       localStorage.getItem("isDarkMode") !== null &&
       localStorage.getItem("isDarkMode") === "true"
   );
 
   useEffect(() => {
     const initialMode = isDarkMode ? "dark-mode" : "";
-    if (isBrowser && initialMode) {
+    if (initialMode) {
       document.body.classList.add(initialMode);
       document.documentElement.classList.add(initialMode);
     }
-  }, [isDarkMode, isBrowser]);
+  }, [isDarkMode]);
 
   useEffect(() => {
-    const icon = isDarkMode ? lightIcon : darkIcon;
+    const icon = isDarkMode ? Light_Icon : Dark_Icon;
 
-    if (isBrowser) {
+    if (typeof window !== "undefined") {
       localStorage.setItem("isDarkMode", isDarkMode);
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
       const img = document.getElementById("kish-icon");
       if (img) {
-        img.src = icon;
+        img.src = icon.toString();
       }
     }
-  }, [isDarkMode, darkIcon, lightIcon, isBrowser]);
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -59,11 +41,20 @@ function useDayNightMode() {
 
   // add or remove the "dark-mode" class on initial render
   useEffect(() => {
-    if (isBrowser) {
+    if (typeof window !== "undefined") {
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
     }
-  }, [isDarkMode, isBrowser]);
+  }, [isDarkMode]);
+
+  // update the icon on initial render
+  useEffect(() => {
+    const icon = isDarkMode ? Light_Icon : Dark_Icon;
+    const img = document.getElementById("kish-icon");
+    if (img) {
+      img.src = icon.toString();
+    }
+  }, [isDarkMode]);
 
   return [isDarkMode, toggleTheme];
 }
