@@ -3,12 +3,15 @@ import Dark_Icon from "../images/KishIcon_Outlined.png";
 import Light_Icon from "../images/KishIcon_Outlined_Light.png";
 
 function useDayNightMode() {
+  // Check if we're running in a browser environment (not during server-side rendering)
+  const isBrowser = typeof window !== "undefined";
+
   // Check if the icons are already in local storage
-  const darkIcon = localStorage.getItem("darkIcon");
-  const lightIcon = localStorage.getItem("lightIcon");
+  const darkIcon = isBrowser ? localStorage.getItem("darkIcon") : null;
+  const lightIcon = isBrowser ? localStorage.getItem("lightIcon") : null;
 
   // Preload the icons if they're not in local storage
-  if (!darkIcon || !lightIcon) {
+  if (isBrowser && (!darkIcon || !lightIcon)) {
     const darkIconImage = new Image();
     darkIconImage.src = Dark_Icon;
     darkIconImage.onload = () => {
@@ -23,23 +26,23 @@ function useDayNightMode() {
   }
 
   const [isDarkMode, setIsDarkMode] = useState(
-    typeof window !== "undefined" &&
-    localStorage.getItem("isDarkMode") !== null &&
-    localStorage.getItem("isDarkMode") === "true"
+    isBrowser &&
+      localStorage.getItem("isDarkMode") !== null &&
+      localStorage.getItem("isDarkMode") === "true"
   );
 
   useEffect(() => {
     const initialMode = isDarkMode ? "dark-mode" : "";
-    if (initialMode) {
+    if (isBrowser && initialMode) {
       document.body.classList.add(initialMode);
       document.documentElement.classList.add(initialMode);
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, isBrowser]);
 
   useEffect(() => {
     const icon = isDarkMode ? lightIcon : darkIcon;
 
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       localStorage.setItem("isDarkMode", isDarkMode);
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
@@ -48,7 +51,7 @@ function useDayNightMode() {
         img.src = icon;
       }
     }
-  }, [isDarkMode, darkIcon, lightIcon]);
+  }, [isDarkMode, darkIcon, lightIcon, isBrowser]);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -56,11 +59,11 @@ function useDayNightMode() {
 
   // add or remove the "dark-mode" class on initial render
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, isBrowser]);
 
   return [isDarkMode, toggleTheme];
 }

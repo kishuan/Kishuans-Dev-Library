@@ -73,7 +73,6 @@ const ProjectPosts = () => {
     zIndex: 2, // Set a higher value for the expanded card
     opacity: 1, // Show the expanded card
     maxHeight: "none", // Show the expanded card content
-    transition: "ease"
   }
 
   const unexpandedCardStyle = {
