@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
-import Contact from "./contact.js"
+import React from "react";
+import { Link } from "gatsby";
+import Contact from "./contact.js";
 
 const Header = ({ siteTitle }) => {
   return (
@@ -29,11 +29,11 @@ const Header = ({ siteTitle }) => {
           id="kish-icon"
           src="../images/KishIcon_Outlined.png"
         />
-        <span style={{ marginLeft: "10px"}}>{siteTitle}</span>
+        <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
       </Link>
       <Contact />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
