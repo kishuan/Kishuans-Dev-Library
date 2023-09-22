@@ -42,15 +42,16 @@ function Contact() {
         <Box
           sx={{
             position: "absolute",
-            top: "50%",
+            top: { xs: "50%", sm: "50%" },
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "80%",  // 80% of the viewport's width
-            maxWidth: "800px",  // will not exceed 800px
+            width: { xs: "95%", sm: "75%", md: "60%", lg: "50%", xl: "40%" },
+            maxHeight: "90vh", // Maximum height is 90% of the viewport height
+            overflow: "auto", // Scrollable if content exceeds the max height
             bgcolor: "background.paper",
             border: "2px solid #000",
             boxShadow: 24,
-            p: 4,
+            p: { xs: 2, sm: 3, md: 4 },
           }}
         >
           <IconButton
@@ -112,7 +113,11 @@ function ContactForm() {
           margin="normal"
           name="phoneNumber"
         />
-        <ValidationError prefix="Phone Number" field="phoneNumber" errors={state.errors} />
+        <ValidationError
+          prefix="Phone Number"
+          field="phoneNumber"
+          errors={state.errors}
+        />
         <TextField
           id="companyName"
           label="Company Name"
@@ -121,16 +126,11 @@ function ContactForm() {
           margin="normal"
           name="companyName"
         />
-        <ValidationError prefix="Company Name" field="companyName" errors={state.errors} />
-        <TextField
-          id="jobTitle"
-          label="Job Title"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="jobTitle"
+        <ValidationError
+          prefix="Company Name"
+          field="companyName"
+          errors={state.errors}
         />
-        <ValidationError prefix="Job Title" field="jobTitle" errors={state.errors} />
         <TextField
           id="website"
           label="Website"
@@ -139,7 +139,11 @@ function ContactForm() {
           margin="normal"
           name="website"
         />
-        <ValidationError prefix="Website" field="website" errors={state.errors} />
+        <ValidationError
+          prefix="Website"
+          field="website"
+          errors={state.errors}
+        />
         <TextField
           id="areaOfInterest"
           label="Area of Interest"
@@ -148,7 +152,11 @@ function ContactForm() {
           margin="normal"
           name="areaOfInterest"
         />
-        <ValidationError prefix="Area of Interest" field="areaOfInterest" errors={state.errors} />
+        <ValidationError
+          prefix="Area of Interest"
+          field="areaOfInterest"
+          errors={state.errors}
+        />
         <TextField
           id="description"
           label="Description"
@@ -157,9 +165,13 @@ function ContactForm() {
           margin="normal"
           name="description"
           multiline
-          rows={4}
+          rows={3} // Decreased the number of rows to 3
         />
-        <ValidationError prefix="Description" field="description" errors={state.errors} />
+        <ValidationError
+          prefix="Description"
+          field="description"
+          errors={state.errors}
+        />
         <Button variant="contained" type="submit" disabled={state.submitting}>
           Submit
         </Button>
