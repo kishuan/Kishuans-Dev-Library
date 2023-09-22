@@ -1,10 +1,10 @@
-import * as React from "react";
-import Grid from "@mui/material/Grid";
-import Contact from "./contact.js";
+import * as React from "react"
+import Grid from "@mui/material/Grid"
+import Contact from "./contact.js"
 
 //icons
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import YouTubeIcon from "@mui/icons-material/YouTube"
 
 function Footer() {
   return (
@@ -45,7 +45,7 @@ function Footer() {
         </Grid>
       </Grid>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

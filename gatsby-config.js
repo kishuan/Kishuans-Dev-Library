@@ -1,13 +1,3 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
- */
-
-/**
- * @type import('gatsby').GatsbyConfig
- */
-
 require("dotenv").config();
 
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
@@ -44,12 +34,13 @@ module.exports = {
         short_name: `starter`,
         start_url: `/`,
         background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        theme_color: `#663399`, // Set your theme color here
         display: `minimal-ui`,
         icon: `src/images/KishIcon_Outlined.png`, // This path is relative to the root of the site.
       },
+    },
+    {
+      resolve: `gatsby-plugin-react-helmet`, // Add this plugin
     },
     {
       resolve: "gatsby-source-contentful",
@@ -67,7 +58,5 @@ module.exports = {
         path: `.env.${process.env.NODE_ENV}`,
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
   ],
-}
+};

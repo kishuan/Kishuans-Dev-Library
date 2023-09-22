@@ -18,6 +18,17 @@ exports.createPages = async ({ actions }) => {
   })
 }
 
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       fallback: {
+//         crypto: require.resolve('crypto-browserify')
+//       }
+//     }
+//   });
+// };
+
+
 // exports.createSchemaCustomization = ({ actions, schema }) => {
 //   const { createTypes } = actions
 

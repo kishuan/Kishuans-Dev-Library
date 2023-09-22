@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
@@ -25,11 +25,14 @@ const Profile = ({ title, description, updatedAt, tag }) => {
         padding: `1em`,
       }}
     >
-      <div id="post_title">
-        <h2>{title} </h2>
+      <div id="post_title" style={{ justifyContent: "right" }}>
+        <h2>{title}</h2>
       </div>
       <hr></hr>
-      <div>{documentToReactComponents(JSON.parse(description.raw))}</div>
+      <div>
+        {title}
+        {documentToReactComponents(JSON.parse(description.raw))}
+      </div>
       <hr></hr>
 
       <Stack direction="row" spacing={1}>

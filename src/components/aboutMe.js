@@ -4,8 +4,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Profile from "./profile.js"
 import Stack from "@mui/material/Stack"
 
-// this component queries all posts with the "Profile" tag to display in an About Me section
-
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
     query ProfileQuery {
@@ -22,6 +20,25 @@ const AboutMe = () => {
           title
           description {
             raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                __typename
+                title
+                file {
+                  url
+                  details {
+                    size
+                    image {
+                      width
+                      height
+                    }
+                  }
+                  fileName
+                  contentType
+                }
+              }
+            }
           }
           updatedAt
           metadata {
@@ -52,11 +69,6 @@ const AboutMe = () => {
   )
 }
 
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
 export const Head = () => <Seo title="Blog" />
 
 export default AboutMe

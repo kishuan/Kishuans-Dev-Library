@@ -19,7 +19,7 @@ const ExpandMore = styled((props) => {
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
-  transition: "none",
+  transition: "ease-in",
 }))
 
 const ProjectPosts = () => {
@@ -56,7 +56,7 @@ const ProjectPosts = () => {
 
   const [expanded, setExpanded] = React.useState(null)
 
-  const handleExpandClick = id => {
+  const handleExpandClick = (id) => {
     if (id === expanded) {
       setExpanded(null)
     } else {
@@ -70,13 +70,20 @@ const ProjectPosts = () => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    zIndex: 2, // Set a higher value for the expanded card
+    opacity: 1, // Show the expanded card
+    maxHeight: "none", // Show the expanded card content
+    transition: "ease-in"
   }
 
   const unexpandedCardStyle = {
     minWidth: 300,
-    display: "flex",
+    display: expanded ? "none" : "flex", // Hide unexpanded cards when one is expanded
     flexDirection: "column",
     justifyContent: "space-between",
+    zIndex: 1, // Set a lower value for unexpanded cards
+    opacity: 1, // Show unexpanded cards
+    maxHeight: expanded ? 0 : "none", // Hide unexpanded card content when one is expanded
   }
 
   return (
@@ -112,19 +119,8 @@ const ProjectPosts = () => {
             </Box>
 
             <Box>
-              <CardActions disableSpacing>
-                <ExpandMore
-                  expand={expanded === post.id}
-                  onClick={() => handleExpandClick(post.id)}
-                  aria-expanded={expanded === post.id}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
               <Collapse in={expanded === post.id} unmountOnExit>
                 <CardContent>
-                  <hr />
                   <Post
                     key={post.id}
                     title={post.title}
@@ -136,6 +132,17 @@ const ProjectPosts = () => {
                   />
                 </CardContent>
               </Collapse>
+            
+              <CardActions disableSpacing>
+                <ExpandMore
+                  expand={expanded === post.id}
+                  onClick={() => handleExpandClick(post.id)}
+                  aria-expanded={expanded === post.id}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon /> 
+                </ExpandMore>
+              </CardActions>
             </Box>
           </Card>
         ))}
