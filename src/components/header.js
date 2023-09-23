@@ -27,7 +27,7 @@ const Header = ({ siteTitle }) => {
           height={80}
           style={{ margin: 0, padding: 0 }}
           id="kish-icon"
-          src="../images/KishIcon_Outlined.png"
+          src="/static/KishIcon_Outlined.png"
         />
         <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
       </Link>

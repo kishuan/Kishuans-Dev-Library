@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import Dark_Icon from "../images/KishIcon_Outlined.png";
-import Light_Icon from "../images/KishIcon_Outlined_Light.png";
-
-// Importing the icons directly in the component file to preload them during SSR
-import "../images/KishIcon_Outlined.png";
-import "../images/KishIcon_Outlined_Light.png";
+import Dark_Icon from "/static/KishIcon_Outlined.png";
+import Light_Icon from "/static/KishIcon_Outlined_Light.png";
 
 function useDayNightMode() {
   const [isDarkMode, setIsDarkMode] = useState(
