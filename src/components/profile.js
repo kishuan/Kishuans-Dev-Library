@@ -3,38 +3,34 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
 import Stack from "@mui/material/Stack"
+import { GatsbyImage } from "gatsby-plugin-image"
 // import { GatsbyImage, getImage } from "gatsby-plugin-image"
 // import Img from 'gatsby-image';
 
 // this component defines the layout for a Profile
 
-const Profile = ({ title, description, updatedAt, tag }) => {
+const Profile = ({ title, description, updatedAt, images, tag }) => {
   return (
-    <Box
-      sx={{
-        "&:hover": {
-          boxShadow: 3,
-          borderRadius: 1,
-        },
-        maxWidth: `false`,
-        width: `100%`,
-        alignItems: `center`,
-        textAlign: `left`,
-        border: `1em`,
-        margin: `0.5em`,
-        padding: `1em`,
-      }}
-    >
-      <div id="post_title" style={{ justifyContent: "right" }}>
+    <Box>
+      <div id="post_title">
         <h2>{title}</h2>
       </div>
       <hr></hr>
-      <div>
-        {title}
-        {documentToReactComponents(JSON.parse(description.raw))}
+      <div id="images">
+        {images &&
+          images.map((image, index) => (
+            <div key={index}>
+                <GatsbyImage
+                  image={image.gatsbyImageData}
+                  alt={`image ${index + 1}`}
+                  layout="fluid"
+                  style={{borderRadius: `1em`, alignItems: `center`}}
+                />
+            </div>
+          ))}
       </div>
+      <div>{documentToReactComponents(JSON.parse(description.raw))}</div>
       <hr></hr>
-
       <Stack direction="row" spacing={1}>
         <Chip
           sx={{

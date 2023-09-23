@@ -14,7 +14,7 @@ module.exports = {
     title: `Kishuan's Dev Library`,
     description: `a repository of Kishuan's development projects and blog posts.`,
     author: `@kishuan`,
-    siteUrl: `https://kishuan.gatsbyjs.io/`,
+    siteUrl: `https://kishuan.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-image`,

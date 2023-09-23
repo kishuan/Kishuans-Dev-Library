@@ -5,7 +5,6 @@ import Seo from "../components/seo"
 import AboutMe from "../components/aboutMe"
 import Container from "@mui/material/Container"
 
-
 const IndexPage = () => (
   <Layout>
     <Container>

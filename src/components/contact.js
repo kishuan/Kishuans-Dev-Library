@@ -1,37 +1,26 @@
-import React from "react"
-import { useForm, ValidationError } from "@formspree/react"
-import Box from "@mui/material/Box"
-import Chip from "@mui/material/Chip"
-import Button from "@mui/material/Button"
-import Modal from "@mui/material/Modal"
-import Container from "@mui/material/Container"
-import TextField from "@mui/material/TextField"
-import Typography from "@mui/material/Typography"
-import IconButton from "@mui/material/IconButton"
-import CloseIcon from "@mui/icons-material/Close"
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Alert from "@mui/material/Alert";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 function Contact() {
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Chip
-        sx={{
-          backgroundColor: "#474E68",
-          color: "#ECF2FF",
-          "&:hover": {
-            backgroundColor: "#474E68",
-            color: "#F0F0F0",
-          },
-          border: "1px solid #F0F0F0",
-          borderRadius: "4px", // set the border radius to 4px
-        }}
-        label="contact me"
-        onClick={handleOpen}
-        outlined
-      />
+      <Button variant="contained" color="primary" onClick={handleOpen}>
+        <MailOutlineIcon/> 
+      </Button>
 
       <Modal
         open={open}
@@ -42,16 +31,18 @@ function Contact() {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "50%", sm: "50%" },
+            top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: { xs: "95%", sm: "75%", md: "60%", lg: "50%", xl: "40%" },
-            maxHeight: "90vh", // Maximum height is 90% of the viewport height
-            overflow: "auto", // Scrollable if content exceeds the max height
+            width: "95%",
+            maxWidth: "90vw",
+            maxHeight: "90vh", // Set a maximum height for the modal
+            overflowY: "auto", // Enable vertical scrolling if content exceeds the height
             bgcolor: "background.paper",
-            border: "2px solid #000",
+            color: "#474E68",
             boxShadow: 24,
             p: { xs: 2, sm: 3, md: 4 },
+            borderRadius: 1
           }}
         >
           <IconButton
@@ -68,21 +59,26 @@ function Contact() {
         </Box>
       </Modal>
     </div>
-  )
+  );
 }
 
+// Rest of your ContactForm remains the same
+
 function ContactForm() {
-  const [state, handleSubmit] = useForm("xrgjewbb")
+  const [state, handleSubmit] = useForm("xrgjewbb");
+
   if (state.succeeded) {
     return (
-      <Typography variant="h6">
-        Thank you for your message! I'll be in contact shortly.
-      </Typography>
-    )
+      // <Typography variant="h6">
+      //   Thank you for your message! I'll be in contact shortly.
+      // </Typography>
+      <Alert severity="success">Thanks!</Alert>
+    );
   }
+
   return (
     <form onSubmit={handleSubmit}>
-      <Container>
+      <Container sx={{ display: "flex", flexDirection: "column" }}>
         <Typography variant="h6" gutterBottom>
           Contact me
         </Typography>
@@ -119,65 +115,32 @@ function ContactForm() {
           errors={state.errors}
         />
         <TextField
-          id="companyName"
-          label="Company Name"
+          id="message"
+          label="Message"
           variant="outlined"
           fullWidth
           margin="normal"
-          name="companyName"
-        />
-        <ValidationError
-          prefix="Company Name"
-          field="companyName"
-          errors={state.errors}
-        />
-        <TextField
-          id="website"
-          label="Website"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="website"
-        />
-        <ValidationError
-          prefix="Website"
-          field="website"
-          errors={state.errors}
-        />
-        <TextField
-          id="areaOfInterest"
-          label="Area of Interest"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="areaOfInterest"
-        />
-        <ValidationError
-          prefix="Area of Interest"
-          field="areaOfInterest"
-          errors={state.errors}
-        />
-        <TextField
-          id="description"
-          label="Description"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          name="description"
+          name="message"
           multiline
-          rows={3} // Decreased the number of rows to 3
+          rows={3}
         />
         <ValidationError
-          prefix="Description"
-          field="description"
+          prefix="Message"
+          field="message"
           errors={state.errors}
         />
-        <Button variant="contained" type="submit" disabled={state.submitting}>
+        <Button
+          color="secondary"
+          variant="contained"
+          type="submit"
+          disabled={state.submitting}
+          sx={{ alignSelf: "flex-end" }} // Align the button to the right
+        >
           Submit
         </Button>
       </Container>
     </form>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

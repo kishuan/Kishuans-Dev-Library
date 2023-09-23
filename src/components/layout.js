@@ -9,6 +9,8 @@ import useDayNightMode from "./usedaynightmode"
 import Switch from "@mui/material/Switch"
 import Footer from "./footer"
 import Box from "@mui/material/Box"
+import { ThemeProvider } from "@mui/material/styles" // Import ThemeProvider
+import theme from "../themes/theme.js"
 
 import "./layout.css"
 
@@ -73,6 +75,7 @@ const Layout = ({ children }) => {
   `)
 
   const [isDarkMode, toggleTheme] = useDayNightMode()
+  const [isMobile, setIsMobile] = React.useState(false)
 
   React.useEffect(() => {
     const initialMode = isDarkMode ? "dark-mode" : ""
@@ -80,16 +83,33 @@ const Layout = ({ children }) => {
       document.body.classList.add(initialMode)
       document.documentElement.classList.add(initialMode)
     }
+
+    // Check for mobile screen width in the browser
+    const checkMobileScreen = () => {
+      setIsMobile(window.innerWidth < theme.breakpoints.values.md)
+    }
+
+    // Add an event listener for the window resize event
+    window.addEventListener("resize", checkMobileScreen)
+
+    // Initial check
+    checkMobileScreen()
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", checkMobileScreen)
+    }
   }, [isDarkMode])
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Container>
         <Header
           siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
         />
+        {/* Conditional rendering for the Divider text */}
         <Divider component="div" role="presentation">
-          decolonizing technology. 
+          {!isMobile && `decolonizing technology.`}
         </Divider>
         <Box
           display="flex"
@@ -101,7 +121,7 @@ const Layout = ({ children }) => {
             checked={isDarkMode}
             onChange={toggleTheme}
             inputProps={{ "aria-label": "controlled" }}
-            color="default"
+            color="primary"
           />
           <Breadcrumbs
             aria-label="breadcrumb"
@@ -116,7 +136,7 @@ const Layout = ({ children }) => {
         <main>{children}</main>
         <Footer />
       </Container>
-    </>
+    </ThemeProvider>
   )
 }
 
