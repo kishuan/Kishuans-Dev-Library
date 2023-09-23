@@ -53,7 +53,7 @@ const Header = ({ siteTitle }) => {
               display: "none", // Hide the image on mobile
             }}
             id="kish-icon"
-            src=""
+            src="/KishIcon_Outlined.png"
           />
         ) : (
           <img
@@ -64,7 +64,7 @@ const Header = ({ siteTitle }) => {
               padding: 0,
             }}
             id="kish-icon"
-            src=""
+            src="/KishIcon_Outlined.png"
           />
         )}
 
