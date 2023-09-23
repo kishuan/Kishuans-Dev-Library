@@ -23,7 +23,7 @@ const Header = ({ siteTitle }) => {
         }}
       >
         <img
-          alt="Head Icon"
+          alt=""
           height={80}
           style={{ margin: 0, padding: 0 }}
           id="kish-icon"
