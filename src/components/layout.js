@@ -5,11 +5,11 @@ import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Breadcrumbs from "@mui/material/Breadcrumbs"
 import { Link } from "gatsby"
-import useDayNightMode from "./usedaynightmode"
+import useDayNightMode from "./usedaynightmode.js"
 import Switch from "@mui/material/Switch"
 import Footer from "./footer"
 import Box from "@mui/material/Box"
-import { ThemeProvider } from "@mui/material/styles" // Import ThemeProvider
+import { ThemeProvider } from "@mui/material/styles"
 import theme from "../themes/theme.js"
 
 import "./layout.css"
@@ -78,28 +78,28 @@ const Layout = ({ children }) => {
   const [isMobile, setIsMobile] = React.useState(false)
 
   React.useEffect(() => {
-    const initialMode = isDarkMode ? "dark-mode" : ""
+    const initialMode = isDarkMode ? "dark-mode" : "";
     if (initialMode) {
-      document.body.classList.add(initialMode)
-      document.documentElement.classList.add(initialMode)
+      document.body.classList.add(initialMode);
+      document.documentElement.classList.add(initialMode);
     }
 
     // Check for mobile screen width in the browser
     const checkMobileScreen = () => {
-      setIsMobile(window.innerWidth < theme.breakpoints.values.md)
-    }
+      setIsMobile(window.innerWidth < theme.breakpoints.values.md);
+    };
 
     // Add an event listener for the window resize event
-    window.addEventListener("resize", checkMobileScreen)
+    window.addEventListener("resize", checkMobileScreen);
 
     // Initial check
-    checkMobileScreen()
+    checkMobileScreen();
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", checkMobileScreen)
-    }
-  }, [isDarkMode])
+      window.removeEventListener("resize", checkMobileScreen);
+    };
+  }, [isDarkMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -117,6 +117,7 @@ const Layout = ({ children }) => {
           alignItems="center"
           padding={1}
         >
+          {/* Use the MaterialUISwitch for dark mode */}
           <MaterialUISwitch
             checked={isDarkMode}
             onChange={toggleTheme}

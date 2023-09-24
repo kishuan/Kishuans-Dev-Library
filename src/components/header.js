@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import Contact from "./contact.js"
 
 const Header = ({ siteTitle }) => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Check if the screen width is greater than 768px
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
