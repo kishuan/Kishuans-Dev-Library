@@ -3,11 +3,12 @@ import { Link } from "gatsby";
 import Contact from "./contact.js";
 import useDayNightMode from "./usedaynightmode.js";
 import { styled, useTheme } from "@mui/material/styles"; // Import useTheme instead of ThemeContext
+import { useDarkMode } from "./darkModeContext"; // <-- Import the useDarkMode hook
 
 const Header = ({ siteTitle }) => {
   const [isMobile, setIsMobile] = useState(true);
-  const [isDarkMode, toggleTheme] = useDayNightMode();
-  const theme = useTheme(); // Use the hook to get the theme
+  const { isDarkMode, toggleDarkMode } = useDarkMode(); // <-- Use the hook
+  const theme = useTheme();
 
   useEffect(() => {
     const handleResize = () => {
@@ -58,7 +59,6 @@ const Header = ({ siteTitle }) => {
         />
         <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
       </Link>
-
       <Contact />
     </header>
   );
