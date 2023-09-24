@@ -1,3 +1,4 @@
+// gatsby-ssr.js
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
  *
@@ -7,6 +8,13 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` })
-}
+export const onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: `en` });
+};
+
+import React from "react";
+import { DarkModeProvider } from "./src/components/darkModeContext";
+
+export const wrapRootElement = ({ element }) => (
+  <DarkModeProvider>{element}</DarkModeProvider>
+);

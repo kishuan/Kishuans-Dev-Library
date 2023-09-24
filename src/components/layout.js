@@ -11,6 +11,7 @@ import Footer from "./footer"
 import Box from "@mui/material/Box"
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "../themes/theme.js"
+import { useDarkMode } from "./darkModeContext.js" // Import the useDarkMode hook
 
 import "./layout.css"
 
@@ -74,32 +75,33 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [isDarkMode, toggleTheme] = useDayNightMode()
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
+
   const [isMobile, setIsMobile] = React.useState(false)
 
   React.useEffect(() => {
-    const initialMode = isDarkMode ? "dark-mode" : "";
+    const initialMode = isDarkMode ? "dark-mode" : ""
     if (initialMode) {
-      document.body.classList.add(initialMode);
-      document.documentElement.classList.add(initialMode);
+      document.body.classList.add(initialMode)
+      document.documentElement.classList.add(initialMode)
     }
 
     // Check for mobile screen width in the browser
     const checkMobileScreen = () => {
-      setIsMobile(window.innerWidth < theme.breakpoints.values.md);
-    };
+      setIsMobile(window.innerWidth < theme.breakpoints.values.md)
+    }
 
     // Add an event listener for the window resize event
-    window.addEventListener("resize", checkMobileScreen);
+    window.addEventListener("resize", checkMobileScreen)
 
     // Initial check
-    checkMobileScreen();
+    checkMobileScreen()
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", checkMobileScreen);
-    };
-  }, [isDarkMode]);
+      window.removeEventListener("resize", checkMobileScreen)
+    }
+  }, [isDarkMode])
 
   return (
     <ThemeProvider theme={theme}>
@@ -120,7 +122,7 @@ const Layout = ({ children }) => {
           {/* Use the MaterialUISwitch for dark mode */}
           <MaterialUISwitch
             checked={isDarkMode}
-            onChange={toggleTheme}
+            onChange={toggleDarkMode}
             inputProps={{ "aria-label": "controlled" }}
             color="primary"
           />

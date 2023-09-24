@@ -4,4 +4,9 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/
  */
 
-// You can delete this file if you're not using it
+import React from "react";
+import { DarkModeProvider } from "./src/components/darkModeContext.js";
+
+export const wrapRootElement = ({ element }) => (
+  <DarkModeProvider>{element}</DarkModeProvider>
+);
