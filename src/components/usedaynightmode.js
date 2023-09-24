@@ -1,57 +1,26 @@
 import { useState, useEffect } from "react";
-import Dark_Icon from "/static/KishIcon_Outlined.png";
-import Light_Icon from "/static/KishIcon_Outlined_Light.png";
 
 function useDayNightMode() {
-  const [isDarkMode, setIsDarkMode] = useState(
-    typeof window !== "undefined" &&
-      localStorage.getItem("isDarkMode") !== null &&
-      localStorage.getItem("isDarkMode") === "true"
-  );
+  // Initial state is derived from localStorage or default value
+  const storedValue = 
+    typeof window !== "undefined" && 
+    localStorage.getItem("isDarkMode");
+    
+  const initialIsDarkMode = storedValue ? JSON.parse(storedValue) : false;
+
+  const [isDarkMode, setIsDarkMode] = useState(initialIsDarkMode);
 
   const toggleTheme = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    localStorage.setItem("isDarkMode", newMode.toString());
+    setIsDarkMode(prevMode => !prevMode);
   };
 
   useEffect(() => {
-    const initialMode = isDarkMode ? "dark-mode" : "";
-    if (initialMode) {
-      document.body.classList.add(initialMode);
-      document.documentElement.classList.add(initialMode);
-    }
-  }, [isDarkMode]);
+    // Add or remove the dark mode class from the body
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.documentElement.classList.toggle("dark-mode", isDarkMode);
 
-  useEffect(() => {
-    const icon = isDarkMode ? Light_Icon : Dark_Icon;
-
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isDarkMode", isDarkMode);
-      document.body.classList.toggle("dark-mode", isDarkMode);
-      document.documentElement.classList.toggle("dark-mode", isDarkMode);
-      const img = document.getElementById("kish-icon");
-      if (img) {
-        img.src = icon.toString();
-      }
-    }
-  }, [isDarkMode]);
-
-  // add or remove the "dark-mode" class on initial render
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.body.classList.toggle("dark-mode", isDarkMode);
-      document.documentElement.classList.toggle("dark-mode", isDarkMode);
-    }
-  }, [isDarkMode]);
-
-  // update the icon on initial render
-  useEffect(() => {
-    const icon = isDarkMode ? Light_Icon : Dark_Icon;
-    const img = document.getElementById("kish-icon");
-    if (img) {
-      img.src = icon.toString();
-    }
+    // Update the localStorage only if there's a change
+    localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   return [isDarkMode, toggleTheme];

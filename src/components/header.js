@@ -1,27 +1,30 @@
-import React from "react"
-import { Link } from "gatsby"
-import Contact from "./contact.js"
+import React, { useState, useEffect, useContext } from "react"; // Added useContext
+import { Link } from "gatsby";
+import Contact from "./contact.js";
+import useDayNightMode from "./usedaynightmode.js";
+import { styled, useTheme } from "@mui/material/styles"; // Import useTheme instead of ThemeContext
 
 const Header = ({ siteTitle }) => {
-  const [isMobile, setIsMobile] = React.useState(true);
+  const [isMobile, setIsMobile] = useState(true);
+  const [isDarkMode, toggleTheme] = useDayNightMode();
+  const theme = useTheme(); // Use the hook to get the theme
 
-  React.useEffect(() => {
-    // Check if the screen width is greater than 768px
+  useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
-
-    // Initial check on component mount
     handleResize();
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const lightModeIcon = "/KishIcon_Outlined.png";
+  const darkModeIcon = "/KishIcon_Outlined_Light.png";
+  const iconImage = theme.palette.mode === 'dark' ? darkModeIcon : lightModeIcon; // Modified this line
 
   return (
     <header
@@ -38,42 +41,27 @@ const Header = ({ siteTitle }) => {
         style={{
           fontSize: `var(--font-lg)`,
           textDecoration: `none`,
-          display: "flex", // Add flex display
-          alignItems: "center", // Center items vertically
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        {/* Conditionally render the image based on screen width */}
-        {isMobile ? (
-          <img
-            alt=""
-            height={80}
-            style={{
-              margin: 0,
-              padding: 0,
-              display: "none", // Hide the image on mobile
-            }}
-            id="kish-icon"
-            src="/KishIcon_Outlined.png"
-          />
-        ) : (
-          <img
-            alt=""
-            height={80}
-            style={{
-              margin: 0,
-              padding: 0,
-            }}
-            id="kish-icon"
-            src="/KishIcon_Outlined.png"
-          />
-        )}
-
+        <img
+          alt="Kish Icon"
+          height={80}
+          style={{
+            margin: 0,
+            padding: 0,
+            display: isMobile ? "none" : "block",
+          }}
+          id="kish-icon"
+          src={iconImage}
+        />
         <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
       </Link>
 
       <Contact />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
