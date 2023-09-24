@@ -9,6 +9,12 @@ function useDayNightMode() {
       localStorage.getItem("isDarkMode") === "true"
   );
 
+  const toggleTheme = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    localStorage.setItem("isDarkMode", newMode.toString());
+  };
+
   useEffect(() => {
     const initialMode = isDarkMode ? "dark-mode" : "";
     if (initialMode) {
@@ -30,10 +36,6 @@ function useDayNightMode() {
       }
     }
   }, [isDarkMode]);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   // add or remove the "dark-mode" class on initial render
   useEffect(() => {
