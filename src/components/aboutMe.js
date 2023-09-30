@@ -49,16 +49,16 @@ const AboutMe = () => {
     getImage(data.contentfulAsset.gatsbyImageData).width + "px"
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} style={{ justifyContent: "center", alignItems: "center"}}>
       {/* Profile Card */}
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} sm={12} md={4}>
         {data.contentfulAsset && (
           <Card
             sx={{
               borderRadius: `1em`,
               maxWidth: maxCardWidth,
               margin: "0 auto", // Center the card horizontally on mobile
-              alignContent: `center`
+              alignContent: `center`,
             }}
           >
             <GatsbyImage
@@ -79,7 +79,7 @@ const AboutMe = () => {
 
       {/* Profile Content */}
       {data.allContentfulPost.nodes.map(post => (
-        <Grid item xs={12} sm={6} md={8} key={post.id}>
+        <Grid item xs={12} sm={12} md={8} key={post.id}>
           <Profile
             key={post.id}
             title={post.title}

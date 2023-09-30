@@ -2,7 +2,6 @@ import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "gatsby";
 import Switch from "@mui/material/Switch";
@@ -10,7 +9,6 @@ import Footer from "./footer";
 import Box from "@mui/material/Box";
 import Header from "./header";
 import { useDarkMode } from "./darkModeContext.js";
-import theme from "../themes/theme.js"
 
 import "./layout.css";
 
@@ -109,9 +107,6 @@ const Layout = ({ children }) => {
         <Header
           siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
         />
-        <Divider component="div" role="presentation">
-          {!isMobile && `decolonizing technology.`}
-        </Divider>
         <Box
           display="flex"
           justifyContent="space-between"

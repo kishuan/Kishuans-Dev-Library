@@ -1,6 +1,7 @@
 import * as React from "react"
 import Grid from "@mui/material/Grid"
 import Contact from "./contact.js"
+import Divider from "@mui/material/Divider"
 
 //icons
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
@@ -10,20 +11,18 @@ function Footer() {
   return (
     <footer
       style={{
-        marginTop: `var(--space-5)`,
+        margin: `1em`,
         fontSize: `var(--font-sm)`,
       }}
     >
+      <Divider>© {new Date().getFullYear()} &middot; kishuan's.</Divider>
       <Grid
         container
         spacing={{ xs: 1, md: 2 }}
-        sx={{ justifyContent: `center`, textAlign: "center" }}
+        sx={{ justifyContent: `space-evenly`, textAlign: "center" }}
       >
         <Grid item xs={12} sm={2}>
           <Contact />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          © {new Date().getFullYear()} &middot; kishuan's.
         </Grid>
         <Grid item xs={12} sm={2}>
           <a
