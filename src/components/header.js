@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import Contact from "./contact.js"
 // import useDayNightMode from "./usedaynightmode.js"
-import { useTheme } from "@mui/material/styles"
 import { useDarkMode } from "./darkModeContext.js"
 import Divider from "@mui/material/Divider"
 import Switch from "@mui/material/Switch"
@@ -13,7 +12,6 @@ import Breadcrumbs from "@mui/material/Breadcrumbs"
 const Header = ({ siteTitle }) => {
   const [isMobile, setIsMobile] = useState(true)
   const { isDarkMode, toggleDarkMode } = useDarkMode()
-  const theme = useTheme()
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,8 +28,9 @@ const Header = ({ siteTitle }) => {
 
   const lightModeIcon = "/KishIcon_Outlined.png"
   const darkModeIcon = "/KishIcon_Outlined_Light.png"
-  const iconImage = theme.palette.mode === "dark" ? darkModeIcon : lightModeIcon
-  const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+  // const iconImage = theme.palette.mode === "dark" ? darkModeIcon : lightModeIcon
+  const iconImage = isDarkMode ? darkModeIcon : lightModeIcon
+  const MaterialUISwitch = styled(Switch)(() => ({
     width: 62,
     height: 34,
     padding: 7,
@@ -50,12 +49,12 @@ const Header = ({ siteTitle }) => {
         "& + .MuiSwitch-track": {
           opacity: 1,
           backgroundColor:
-            theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+            isDarkMode ? "#8796A5" : "#aab4be",
         },
       },
     },
     "& .MuiSwitch-thumb": {
-      backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#001e3c",
+      backgroundColor: isDarkMode ? "#003892" : "#001e3c",
       width: 32,
       height: 32,
       "&:before": {
@@ -74,7 +73,7 @@ const Header = ({ siteTitle }) => {
     },
     "& .MuiSwitch-track": {
       opacity: 1,
-      backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+      backgroundColor: isDarkMode ? "#8796A5" : "#aab4be",
       borderRadius: 20 / 2,
     },
   }))
