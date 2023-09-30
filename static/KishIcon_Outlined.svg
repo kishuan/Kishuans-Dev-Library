@@ -1,117 +1,13 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
-import Contact from "./contact.js"
-// import useDayNightMode from "./usedaynightmode.js"
-import { useDarkMode } from "./darkModeContext.js"
-import Divider from "@mui/material/Divider"
-import Switch from "@mui/material/Switch"
-import { styled } from "@mui/material/styles"
-import Box from "@mui/material/Box"
-import Breadcrumbs from "@mui/material/Breadcrumbs"
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000"
+ preserveAspectRatio="xMidYMid meet">
 
-const Header = ({ siteTitle }) => {
-  const [isMobile, setIsMobile] = useState(true)
-  const { isDarkMode, toggleDarkMode } = useDarkMode()
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-
-    window.addEventListener("resize", handleResize)
-    handleResize()
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
-
-  const lightModeIcon = "/KishIcon_Outlined.png"
-  const darkModeIcon = "/KishIcon_Outlined_Light.png"
-  // const iconImage = theme.palette.mode === "dark" ? darkModeIcon : lightModeIcon
-  const iconImage = isDarkMode ? darkModeIcon : lightModeIcon
-  const MaterialUISwitch = styled(Switch)(() => ({
-    width: 62,
-    height: 34,
-    padding: 7,
-    "& .MuiSwitch-switchBase": {
-      margin: 1,
-      padding: 0,
-      transform: "translateX(6px)",
-      "&.Mui-checked": {
-        color: "#fff",
-        transform: "translateX(22px)",
-        "& .MuiSwitch-thumb:before": {
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            "#fff"
-          )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-        },
-        "& + .MuiSwitch-track": {
-          opacity: 1,
-          backgroundColor: isDarkMode ? "#8796A5" : "#aab4be",
-        },
-      },
-    },
-    "& .MuiSwitch-thumb": {
-      backgroundColor: isDarkMode ? "#003892" : "#001e3c",
-      width: 32,
-      height: 32,
-      "&:before": {
-        content: "''",
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        left: 0,
-        top: 0,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          "#fff"
-        )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-      },
-    },
-    "& .MuiSwitch-track": {
-      opacity: 1,
-      backgroundColor: isDarkMode ? "#8796A5" : "#aab4be",
-      borderRadius: 20 / 2,
-    },
-  }))
-
-  return (
-    <>
-      <header
-        style={{
-          margin: `0.5em`,
-          padding: `var(--space-2) var(--size-gutter)`,
-          display: `flex`,
-          alignItems: `center`,
-          justifyContent: `space-between`,
-        }}
-      >
-        <Link
-          to="/"
-          style={{
-            fontSize: `var(--font-lg)`,
-            textDecoration: `none`,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <svg
-            version="1.0"
-            xmlns="http://www.w3.org/2000/svg"
-            width="18%"
-            height="auto"
-            viewBox="0 0 1024.000000 1024.000000"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <g
-              transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-              fill="#000000"
-              stroke="none"
-            >
-              <path fill="currentColor"
-                d="M5210 9629 c-570 -46 -1126 -229 -1462 -481 -221 -167 -312 -389
+<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M5210 9629 c-570 -46 -1126 -229 -1462 -481 -221 -167 -312 -389
 -242 -596 9 -24 13 -46 11 -49 -3 -3 -41 -9 -84 -14 -560 -67 -1179 -500
 -1500 -1049 -159 -273 -230 -517 -240 -830 -8 -251 17 -407 103 -639 71 -190
 220 -477 260 -499 12 -7 11 -17 -11 -64 -68 -148 -54 -340 51 -738 44 -164 37
@@ -267,62 +163,19 @@ m-1489 -153 c436 -115 461 -116 824 -22 129 34 257 68 285 76 27 8 51 14 52
 -33 c0 -31 23 -77 38 -77 30 1 36 22 38 132 4 173 24 218 99 218 l43 0 17 -65z
 m916 -1082 c27 -79 26 -95 -8 -91 -25 3 -29 8 -36 58 -4 30 -5 71 -2 90 8 41
 15 32 46 -57z m1082 -26 c-8 -59 -10 -62 -37 -65 -28 -3 -29 -2 -23 30 3 18
-15 60 28 93 22 58 23 59 32 32 5 -16 5 -53 0 -90z"
-              />
-              <path fill="currentColor"
-                d="M4101 5917 c-20 -25 -4 -56 32 -61 18 -3 89 -8 158 -11 69 -4 143
+15 60 28 93 22 58 23 59 32 32 5 -16 5 -53 0 -90z"/>
+<path d="M4101 5917 c-20 -25 -4 -56 32 -61 18 -3 89 -8 158 -11 69 -4 143
 -10 164 -15 45 -10 75 2 75 29 0 10 -6 24 -14 30 -16 13 -118 26 -286 36 -99
-6 -117 5 -129 -8z"
-              />
-              <path fill="currentColor"
-                d="M5058 3899 c-18 -16 -65 -46 -105 -66 -90 -45 -136 -43 -248 10 -83
+6 -117 5 -129 -8z"/>
+<path d="M5058 3899 c-18 -16 -65 -46 -105 -66 -90 -45 -136 -43 -248 10 -83
 40 -119 46 -129 22 -9 -25 4 -44 48 -70 158 -92 278 -90 428 7 l48 30 48 -30
 c150 -97 270 -99 428 -7 44 26 57 45 48 70 -10 24 -46 18 -129 -22 -112 -53
 -158 -55 -248 -10 -40 20 -87 50 -105 66 -18 17 -37 31 -42 31 -5 0 -24 -14
--42 -31z"
-              />
-              <path fill="currentColor"
-                d="M7639 4717 c-123 -83 -37 -257 108 -218 61 17 103 69 103 127 0 39
--5 51 -34 80 -30 30 -40 34 -89 34 -40 0 -63 -6 -88 -23z"
-              />
-              <path fill="currentColor"
-                d="M4317 1856 c-18 -19 -13 -42 13 -56 83 -44 1421 -48 1535 -4 28 11
+-42 -31z"/>
+<path d="M7639 4717 c-123 -83 -37 -257 108 -218 61 17 103 69 103 127 0 39
+-5 51 -34 80 -30 30 -40 34 -89 34 -40 0 -63 -6 -88 -23z"/>
+<path d="M4317 1856 c-18 -19 -13 -42 13 -56 83 -44 1421 -48 1535 -4 28 11
 37 41 18 60 -14 14 -29 15 -87 10 -283 -24 -410 -30 -696 -30 -286 0 -413 6
--696 30 -57 5 -73 3 -87 -10z"
-              />
-            </g>
-          </svg>
-          <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
-        </Link>
-        <Contact />
-      </header>
-      <Divider component="div" role="presentation">
-        {!isMobile && `decolonizing technology.`}
-      </Divider>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        padding={1}
-      >
-        <MaterialUISwitch
-          checked={isDarkMode}
-          onChange={toggleDarkMode}
-          inputProps={{ "aria-label": "controlled" }}
-          color="primary"
-        />
-        <Breadcrumbs
-          aria-label="breadcrumb"
-          spacing={3}
-          sx={{ fontFamily: `courier new` }}
-        >
-          <Link to="/">Home</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/projects">Projects</Link>
-        </Breadcrumbs>
-      </Box>
-    </>
-  )
-}
-
-export default Header
+-696 30 -57 5 -73 3 -87 -10z"/>
+</g>
+</svg>
