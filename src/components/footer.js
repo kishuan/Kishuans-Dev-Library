@@ -1,5 +1,4 @@
 import * as React from "react"
-import Grid from "@mui/material/Grid"
 import Contact from "./contact.js"
 import Divider from "@mui/material/Divider"
 import Typography from "@mui/material/Typography"
@@ -37,7 +36,7 @@ function Footer() {
           target="_blank"
           rel="noreferrer"
           variant="text" // or "text", "outlined" depending on your preference
-          color="currentColor" // or "default", "secondary", etc.
+          color="default" // or "default", "secondary", etc.
           size="large"
         >
           <YouTubeIcon />

@@ -5,8 +5,10 @@ import Container from "@mui/material/Container"
 import Footer from "./footer"
 import Header from "./header"
 import { useDarkMode } from "./darkModeContext.js"
-
+import { Fade } from "@mui/material"
 import "./layout.css"
+import Skeleton from "@mui/material/Skeleton"
+import Stack from "@mui/material/Stack"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -21,7 +23,6 @@ const Layout = ({ children }) => {
 
   const { isDarkMode } = useDarkMode()
 
-  // Derived theme based on isDarkMode
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -32,13 +33,36 @@ const Layout = ({ children }) => {
     [isDarkMode]
   )
 
+  const [visible, setVisible] = React.useState(false) // start with content hidden
+
+  // Show content after a set delay
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true)
+    }, 500) // 500ms delay before content fades in
+
+    return () => clearTimeout(timer)
+  }, []) // This effect should only run once when the component mounts
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <Header
           siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
         />
-        <main>{children}</main>
+        <main>
+          {visible ? (
+            <Fade in={visible}>
+              <div>{children}</div>
+            </Fade>
+          ) : (
+            <Stack spacing={3} alignItems="center">
+              <Skeleton variant="rectangular" height={80} width="80%" />
+              <Skeleton variant="rectangular" height={50} width="80%" />
+              <Skeleton variant="rectangular" height="60vh" width="80%" />
+            </Stack>
+          )}
+        </main>
         <Footer />
       </Container>
     </ThemeProvider>

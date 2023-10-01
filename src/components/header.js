@@ -9,6 +9,7 @@ import { styled } from "@mui/material/styles"
 import Box from "@mui/material/Box"
 import Breadcrumbs from "@mui/material/Breadcrumbs"
 import Typography from "@mui/material/Typography"
+import HomeIcon from '@mui/icons-material/Home';
 
 const Header = ({ siteTitle }) => {
   const [isMobile, setIsMobile] = useState(true)
@@ -35,6 +36,7 @@ const Header = ({ siteTitle }) => {
       margin: 1,
       padding: 0,
       transform: "translateX(6px)",
+      transition: "transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
       "&.Mui-checked": {
         color: "#fff",
         transform: "translateX(22px)",
@@ -50,7 +52,7 @@ const Header = ({ siteTitle }) => {
       },
     },
     "& .MuiSwitch-thumb": {
-      backgroundColor: isDarkMode ? "#003892" : "#001e3c",
+      backgroundColor: isDarkMode ? "#362b54" : "#362b54",
       width: 32,
       height: 32,
       "&:before": {
@@ -97,7 +99,7 @@ const Header = ({ siteTitle }) => {
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
-            width="18%"
+            width="15%"
             viewBox="0 0 1024.000000 1024.000000"
             preserveAspectRatio="xMidYMid meet"
           >
@@ -106,7 +108,8 @@ const Header = ({ siteTitle }) => {
               fill="#000000"
               stroke="none"
             >
-              <path fill="currentColor"
+              <path
+                fill="currentColor"
                 d="M5210 9629 c-570 -46 -1126 -229 -1462 -481 -221 -167 -312 -389
 -242 -596 9 -24 13 -46 11 -49 -3 -3 -41 -9 -84 -14 -560 -67 -1179 -500
 -1500 -1049 -159 -273 -230 -517 -240 -830 -8 -251 17 -407 103 -639 71 -190
@@ -265,23 +268,27 @@ m916 -1082 c27 -79 26 -95 -8 -91 -25 3 -29 8 -36 58 -4 30 -5 71 -2 90 8 41
 15 32 46 -57z m1082 -26 c-8 -59 -10 -62 -37 -65 -28 -3 -29 -2 -23 30 3 18
 15 60 28 93 22 58 23 59 32 32 5 -16 5 -53 0 -90z"
               />
-              <path fill="currentColor"
+              <path
+                fill="currentColor"
                 d="M4101 5917 c-20 -25 -4 -56 32 -61 18 -3 89 -8 158 -11 69 -4 143
 -10 164 -15 45 -10 75 2 75 29 0 10 -6 24 -14 30 -16 13 -118 26 -286 36 -99
 6 -117 5 -129 -8z"
               />
-              <path fill="currentColor"
+              <path
+                fill="currentColor"
                 d="M5058 3899 c-18 -16 -65 -46 -105 -66 -90 -45 -136 -43 -248 10 -83
 40 -119 46 -129 22 -9 -25 4 -44 48 -70 158 -92 278 -90 428 7 l48 30 48 -30
 c150 -97 270 -99 428 -7 44 26 57 45 48 70 -10 24 -46 18 -129 -22 -112 -53
 -158 -55 -248 -10 -40 20 -87 50 -105 66 -18 17 -37 31 -42 31 -5 0 -24 -14
 -42 -31z"
               />
-              <path fill="currentColor"
+              <path
+                fill="currentColor"
                 d="M7639 4717 c-123 -83 -37 -257 108 -218 61 17 103 69 103 127 0 39
 -5 51 -34 80 -30 30 -40 34 -89 34 -40 0 -63 -6 -88 -23z"
               />
-              <path fill="currentColor"
+              <path
+                fill="currentColor"
                 d="M4317 1856 c-18 -19 -13 -42 13 -56 83 -44 1421 -48 1535 -4 28 11
 37 41 18 60 -14 14 -29 15 -87 10 -283 -24 -410 -30 -696 -30 -286 0 -413 6
 -696 30 -57 5 -73 3 -87 -10z"
@@ -293,7 +300,9 @@ c150 -97 270 -99 428 -7 44 26 57 45 48 70 -10 24 -46 18 -129 -22 -112 -53
         <Contact />
       </header>
       <Divider component="div" role="presentation">
-        {!isMobile && <Typography variant="caption">decolonizing technology.</Typography>}
+        {!isMobile && (
+          <Typography variant="subtitle1">decolonizing technology.</Typography>
+        )}
       </Divider>
       <Box
         display="flex"
@@ -310,11 +319,10 @@ c150 -97 270 -99 428 -7 44 26 57 45 48 70 -10 24 -46 18 -129 -22 -112 -53
         <Breadcrumbs
           aria-label="breadcrumb"
           spacing={3}
-          sx={{ fontFamily: `courier new` }}
         >
-          <Link to="/">Home</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/projects">Projects</Link>
+          <Link to="/"><Typography variant="overline">Home</Typography></Link>
+          <Link to="/blog"><Typography variant="overline">Blog</Typography></Link>
+          <Link to="/projects"><Typography variant="overline">Projects</Typography></Link>
         </Breadcrumbs>
       </Box>
     </>

@@ -60,9 +60,9 @@ const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
             </div>
           ))}
       </div>
-      <Typography variant="body1">
-        {documentToReactComponents(JSON.parse(description.raw))}
-      </Typography>
+
+      {documentToReactComponents(JSON.parse(description.raw))}
+
       <Box mt={2}>
         <Divider textAlign="left">
           <Typography variant="overline">tags: </Typography>
