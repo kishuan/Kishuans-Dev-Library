@@ -1,57 +1,80 @@
-import React from "react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+import React from "react"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import Box from "@mui/material/Box"
+import Chip from "@mui/material/Chip"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemText from "@mui/material/ListItemText"
+import ListItemAvatar from "@mui/material/ListItemAvatar"
+import { GatsbyImage } from "gatsby-plugin-image"
+import Avatar from "@mui/material/Avatar"
+import Typography from "@mui/material/Typography"
+import Stack from "@mui/material/Stack"
+import Divider from "@mui/material/Divider"
+// import { GatsbyImage, getImage } from "gatsby-plugin-image"
+// import Img from 'gatsby-image';
 
-const Post = ({ title, description, updatedAt, tag }) => {
-  const findAsset = (id, references) => {
-    return references.find((ref) => ref.sys.id === id);
-  };
-
-  const options = {
-    renderNode: {
-      "embedded-asset-block": (node) => {
-        const asset = findAsset(node.data.target.sys.id, JSON.parse(description.references));
-        const { title, file } = asset.fields;
-        const imageUrl = file.url;
-        return <img src={imageUrl} alt={title} />;
-      },
-    },
-  };
+const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
+  // generate readable datetime format
+  const formatDateAndTime = dateString => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true, // Use AM/PM format
+    }
+    return new Date(dateString).toLocaleString(undefined, options)
+  }
 
   return (
     <Box>
-      <div id="post_title">
-        <h2>{title} </h2>
-      </div>
-      <hr></hr>
-      <div>{documentToReactComponents(JSON.parse(description.raw), options)}</div>
-      <hr></hr>
-      <Stack direction="row" spacing={1}>
-        <Chip
-          sx={{
-            height: "auto",
-            "& .MuiChip-label": {
-              display: "block",
-              whiteSpace: "normal",
-            },
-            backgroundColor: `#474E68`,
-            color: `#ECF2FF`,
-          }}
-          label={`Last published: ${updatedAt}`}
-          size="small"
-          variant="outlined"
-        />
-        <Chip
-          sx={{ color: `#ECF2FF`, backgroundColor: `#474E68` }}
-          label={tag}
-          size="small"
-          variant="outlined"
-        />
-      </Stack>
-    </Box>
-  );
-};
+      <Typography variant="h4">{title}</Typography>
+      <Divider textAlign="center"></Divider>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar alt="" src={avatar.images.fallback.src} />
+          </ListItemAvatar>
+          <ListItemText primary="Kishuan Matteo Espiritu" secondary="he/him" />
+        </ListItem>
+      </List>
+      <Divider textAlign="left">
+        <Typography variant="overline">{`${formatDateAndTime(
+          updatedAt
+        )}`}</Typography>
+      </Divider>
 
-export default Post;
+      <div id="images">
+        {images &&
+          images.map((image, index) => (
+            <div key={index}>
+              <GatsbyImage
+                image={image.gatsbyImageData}
+                alt={`image ${index + 1}`}
+                layout="fluid"
+                style={{ borderRadius: `1em`, alignItems: `center` }}
+              />
+            </div>
+          ))}
+      </div>
+      <Typography variant="body1">
+        {documentToReactComponents(JSON.parse(description.raw))}
+      </Typography>
+      <Box mt={2}>
+        <Divider textAlign="left">
+          <Typography variant="overline">tags: </Typography>
+        </Divider>
+      </Box>
+      <Box mt={2}>
+        <Stack direction="row" spacing={2} justifyContent="flex-start">
+          <Chip label={tag} size="small" variant="filled" />
+        </Stack>
+      </Box>
+    </Box>
+  )
+}
+
+export default Post

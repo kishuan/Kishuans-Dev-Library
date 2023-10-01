@@ -2,6 +2,9 @@ import * as React from "react"
 import Grid from "@mui/material/Grid"
 import Contact from "./contact.js"
 import Divider from "@mui/material/Divider"
+import Typography from "@mui/material/Typography"
+import Stack from "@mui/material/Stack"
+import IconButton from "@mui/material/IconButton"
 
 //icons
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
@@ -15,34 +18,31 @@ function Footer() {
         fontSize: `var(--font-sm)`,
       }}
     >
-      <Divider>© {new Date().getFullYear()} &middot; kishuan's.</Divider>
-      <Grid
-        container
-        spacing={{ xs: 1, md: 2 }}
-        sx={{ justifyContent: `space-evenly`, textAlign: "center" }}
-      >
-        <Grid item xs={12} sm={2}>
-          <Contact />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <a
-            href="https://www.linkedin.com/in/kishuan-espiritu/"
-            target="_blank"
-            rel="noreferrer"
-            style={{ marginRight: "1rem" }}
-          >
-            <LinkedInIcon />
-          </a>
-          <a
-            href="https://www.youtube.com/@kishuan7355"
-            target="_blank"
-            rel="noreferrer"
-            style={{ marginRight: "1rem" }}
-          >
-            <YouTubeIcon />
-          </a>
-        </Grid>
-      </Grid>
+      <Divider />
+      <Typography variant="caption">
+          © {new Date().getFullYear()} &middot; kishuan's.
+        </Typography>
+      <Stack direction="row" spacing={2} justifyContent="center">
+        <Contact />
+        <IconButton
+          href="https://www.linkedin.com/in/kishuan-espiritu/"
+          target="_blank"
+          rel="noreferrer"
+          size="large"
+        >
+          <LinkedInIcon />
+        </IconButton> 
+        <IconButton
+          href="https://www.youtube.com/@kishuan7355"
+          target="_blank"
+          rel="noreferrer"
+          variant="text" // or "text", "outlined" depending on your preference
+          color="currentColor" // or "default", "secondary", etc.
+          size="large"
+        >
+          <YouTubeIcon />
+        </IconButton>
+      </Stack>
     </footer>
   )
 }

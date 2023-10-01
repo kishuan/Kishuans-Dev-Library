@@ -1,26 +1,26 @@
-import React from "react";
-import { useForm, ValidationError } from "@formspree/react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import React from "react"
+import { useForm, ValidationError } from "@formspree/react"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Modal from "@mui/material/Modal"
+import Container from "@mui/material/Container"
+import TextField from "@mui/material/TextField"
+import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import CloseIcon from "@mui/icons-material/Close"
+import Alert from "@mui/material/Alert"
+import MailOutlineIcon from "@mui/icons-material/MailOutline"
 
 function Contact() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <IconButton size="large" onClick={handleOpen}>
         <MailOutlineIcon/> 
-      </Button>
+      </IconButton>
 
       <Modal
         open={open}
@@ -42,7 +42,7 @@ function Contact() {
             color: "#474E68",
             boxShadow: 24,
             p: { xs: 2, sm: 3, md: 4 },
-            borderRadius: 1
+            borderRadius: 1,
           }}
         >
           <IconButton
@@ -59,13 +59,13 @@ function Contact() {
         </Box>
       </Modal>
     </div>
-  );
+  )
 }
 
 // Rest of your ContactForm remains the same
 
 function ContactForm() {
-  const [state, handleSubmit] = useForm("xrgjewbb");
+  const [state, handleSubmit] = useForm("xrgjewbb")
 
   if (state.succeeded) {
     return (
@@ -73,7 +73,7 @@ function ContactForm() {
       //   Thank you for your message! I'll be in contact shortly.
       // </Typography>
       <Alert severity="success">Thanks!</Alert>
-    );
+    )
   }
 
   return (
@@ -140,7 +140,7 @@ function ContactForm() {
         </Button>
       </Container>
     </form>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

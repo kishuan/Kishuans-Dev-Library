@@ -8,6 +8,7 @@ import Switch from "@mui/material/Switch"
 import { styled } from "@mui/material/styles"
 import Box from "@mui/material/Box"
 import Breadcrumbs from "@mui/material/Breadcrumbs"
+import Typography from "@mui/material/Typography"
 
 const Header = ({ siteTitle }) => {
   const [isMobile, setIsMobile] = useState(true)
@@ -26,10 +27,6 @@ const Header = ({ siteTitle }) => {
     }
   }, [])
 
-  const lightModeIcon = "/KishIcon_Outlined.png"
-  const darkModeIcon = "/KishIcon_Outlined_Light.png"
-  // const iconImage = theme.palette.mode === "dark" ? darkModeIcon : lightModeIcon
-  const iconImage = isDarkMode ? darkModeIcon : lightModeIcon
   const MaterialUISwitch = styled(Switch)(() => ({
     width: 62,
     height: 34,
@@ -101,7 +98,6 @@ const Header = ({ siteTitle }) => {
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
             width="18%"
-            height="auto"
             viewBox="0 0 1024.000000 1024.000000"
             preserveAspectRatio="xMidYMid meet"
           >
@@ -297,7 +293,7 @@ c150 -97 270 -99 428 -7 44 26 57 45 48 70 -10 24 -46 18 -129 -22 -112 -53
         <Contact />
       </header>
       <Divider component="div" role="presentation">
-        {!isMobile && `decolonizing technology.`}
+        {!isMobile && <Typography variant="caption">decolonizing technology.</Typography>}
       </Divider>
       <Box
         display="flex"
