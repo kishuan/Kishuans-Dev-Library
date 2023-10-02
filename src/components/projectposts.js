@@ -1,30 +1,27 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Post from "./post"
-import Box from "@mui/material/Box"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import CardActions from "@mui/material/CardActions"
-import Collapse from "@mui/material/Collapse"
-import { styled } from "@mui/material/styles"
-import Typography from "@mui/material/Typography"
+import {
+  Grid,
+  Typography,
+  Button,
+  ListItemButton,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  useMediaQuery
+} from "@mui/material"
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-// import icons
-import IconButton from "@mui/material/IconButton"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMoreRounded"
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props
-  return <IconButton {...other} />
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: "ease-in",
-}))
 
 const ProjectPosts = () => {
+  const [selectedProject, setSelectedProject] = React.useState(null)
+  const [viewMode, setViewMode] = React.useState("list")
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down('md'));
+
   const data = useStaticQuery(graphql`
-    query ProjectPostsQuery {
+    query PortfolioQuery {
       allContentfulPost(
         filter: {
           metadata: {
@@ -51,102 +48,73 @@ const ProjectPosts = () => {
           }
         }
       }
+      contentfulAsset(contentful_id: { eq: "47sv4JLEMcUbZniHLMifOa" }) {
+        gatsbyImageData(layout: CONSTRAINED, width: 400)
+      }
     }
   `)
 
-  const [expanded, setExpanded] = React.useState(null)
-
-  const handleExpandClick = (id) => {
-    if (id === expanded) {
-      setExpanded(null)
-    } else {
-      setExpanded(id)
-    }
-  }
-
-  const expandedCardStyle = {
-    gridColumn: "1 / -1",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    zIndex: 2, // Set a higher value for the expanded card
-    opacity: 1, // Show the expanded card
-    maxHeight: "none", // Show the expanded card content
-  }
-
-  const unexpandedCardStyle = {
-    minWidth: 300,
-    display: expanded ? "none" : "flex", // Hide unexpanded cards when one is expanded
-    flexDirection: "column",
-    justifyContent: "space-between",
-    zIndex: 1, // Set a lower value for unexpanded cards
-    opacity: 1, // Show unexpanded cards
-    maxHeight: expanded ? 0 : "none", // Hide unexpanded card content when one is expanded
-  }
-
   return (
-    <Box container sx={{ justifyContent: `center` }} direction="row">
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: 1,
-        }}
-      >
-        {data.allContentfulPost.nodes.map((post) => (
-          <Card
-            key={post.id}
-            sx={expanded === post.id ? expandedCardStyle : unexpandedCardStyle}
-            variant="outlined"
-            id="projectPost"
-          >
-            <Box>
-              {expanded !== post.id && (
-                <>
-                  <CardContent>
-                    <h3>{post.title}</h3>
-                  </CardContent>
-                  <hr />
-                  <CardContent>
-                    <Typography variant="body2">
-                      {post.preview.preview}...
-                    </Typography>
-                  </CardContent>
-                </>
-              )}
-            </Box>
-
-            <Box>
-              <Collapse in={expanded === post.id} unmountOnExit>
-                <CardContent>
-                  <Post
-                    key={post.id}
-                    title={post.title}
-                    description={post.description}
-                    updatedAt={post.updatedAt}
-                    tag={post.metadata.tags.map((tag) => (
-                      <span key={tag.id}>{tag.name}</span>
-                    ))}
-                  />
-                </CardContent>
-              </Collapse>
-            
-              <CardActions disableSpacing>
-                <ExpandMore
-                  expand={expanded === post.id}
-                  onClick={() => handleExpandClick(post.id)}
-                  aria-expanded={expanded === post.id}
-                  aria-label="show more"
+    <Grid container spacing={2}>
+      {/* List View */}
+      {(viewMode === "list" || !isMobile) && ( // check window width or use a hook/library
+        <Grid item xs={12} sm={12} md={4} sx={{ overflowY: "auto" }}>
+          {data.allContentfulPost.nodes.map(post => (
+            <List key={post.id} variant="outlined">
+              <ListItem disablePadding>
+                <ListItemButton
+                  size="small"
+                  onClick={() => {
+                    setSelectedProject(post)
+                    setViewMode("post")
+                  }}
                 >
-                  <ExpandMoreIcon /> 
-                </ExpandMore>
-              </CardActions>
-            </Box>
-          </Card>
-        ))}
-      </Box>
-    </Box>
+                  <ListItemText
+                    primary={post.title}
+                    secondary={post.preview.preview}
+                  />
+                </ListItemButton>
+              </ListItem>
+              <Divider component="li" variant="inset" />
+            </List>
+          ))}
+        </Grid>
+      )}
+      {/* Vertical Divider for larger screens */}
+      <Grid item sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
+        <Divider orientation="vertical" sx={{ height: "100%" }} />
+      </Grid>
+
+      {/* Post View */}
+      {selectedProject && (!isMobile || (isMobile && viewMode === "post")) &&  (
+        <Grid item xs={12} sm={12} md={7}>
+          {/* Show the 'Back' button only on mobile and when in 'post' view mode */}
+          {viewMode === "post" && isMobile && (
+            <Button onClick={() => setViewMode("list")} size="large"><ChevronLeftIcon/>Back</Button>
+          )}
+          <Post
+            key={selectedProject.id}
+            title={selectedProject.title}
+            description={selectedProject.description}
+            updatedAt={selectedProject.updatedAt}
+            tag={selectedProject.metadata.tags.map(tag => (
+              <span key={tag.id}>{tag.name}</span>
+            ))}
+            images={selectedProject.images || []}
+            avatar={data.contentfulAsset.gatsbyImageData}
+          />
+        </Grid>
+      )}
+
+      {/* Default Message for larger screens */}
+      {!selectedProject && !isMobile && (
+        <Grid item md={7}>
+          <Typography variant="h6" sx={{ mt: 3, textAlign: "center" }}>
+            Select a project to view more details!
+          </Typography>
+        </Grid>
+      )}
+    </Grid>
   )
 }
 

@@ -1,5 +1,6 @@
 import * as React from "react"
-import ProjectPosts from "../components/projectposts"
+// import ProjectPosts from "../components/projectposts"
+import ProjectPosts from "../components/projectPosts";
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Container from "@mui/material/Container"
