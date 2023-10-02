@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles"
 import Container from "@mui/material/Container"
 import Footer from "./footer"
 import Header from "./header"
@@ -16,6 +16,7 @@ import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 
 function ScrollTop(props) {
+  const theme = useTheme()
   const { children, window } = props
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -40,7 +41,15 @@ function ScrollTop(props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
+        sx={{
+          position: "fixed",
+          bottom: theme.spacing(2),  // Equivalent to 16px by default
+          right: theme.spacing(2),
+          [theme.breakpoints.up("sm")]: {
+            bottom: theme.spacing(6.25),  // Equivalent to 50px by default
+            right: theme.spacing(10),     // Equivalent to 80px by default
+          },
+        }}
       >
         {children}
       </Box>
@@ -115,9 +124,20 @@ const Layout = ({ children }) => {
           <Fab
             size="small"
             aria-label="scroll back to top"
-            sx={{color: isDarkMode ? "dark" : "light", backgroundColor: isDarkMode ? "light" : "dark" }}
+            sx={{
+              color: isDarkMode ? theme.palette.dark : theme.palette.light,
+              backgroundColor: isDarkMode
+                ? theme.palette.light
+                : theme.palette.dark,
+              "&:hover": {
+                backgroundColor: isDarkMode
+                  ? theme.palette.light
+                  : theme.palette.dark,
+                opacity: 0.8,
+              },
+            }}
           >
-            <KeyboardArrowUpIcon/>
+            <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
         <Footer />

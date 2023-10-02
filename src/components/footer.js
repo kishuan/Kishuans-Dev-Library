@@ -17,10 +17,11 @@ function Footer() {
         fontSize: `var(--font-sm)`,
       }}
     >
-      <Divider />
-      <Typography variant="caption">
+      <Divider>
+        <Typography variant="caption">
           © {new Date().getFullYear()} &middot; kishuan's.
         </Typography>
+      </Divider>
       <Stack direction="row" spacing={2} justifyContent="center">
         <Contact />
         <IconButton
@@ -30,7 +31,7 @@ function Footer() {
           size="large"
         >
           <LinkedInIcon />
-        </IconButton> 
+        </IconButton>
         <IconButton
           href="https://www.youtube.com/@kishuan7355"
           target="_blank"
