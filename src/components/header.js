@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import Contact from "./contact.js"
 // import useDayNightMode from "./usedaynightmode.js"
@@ -11,30 +11,20 @@ import Breadcrumbs from "@mui/material/Breadcrumbs"
 import Typography from "@mui/material/Typography"
 import Logo from "./logo.js"
 
-
 // For AppBar display on Mobile
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
+import { useTheme, useMediaQuery } from "@mui/material"
+import { Helmet } from "react-helmet"
 
 const Header = ({ siteTitle }) => {
-  const [isMobile, setIsMobile] = useState(true)
   const [anchorElNav, setAnchorElNav] = useState(null)
   const { isDarkMode, toggleDarkMode } = useDarkMode()
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-
-    window.addEventListener("resize", handleResize)
-    handleResize()
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget)
@@ -94,6 +84,35 @@ const Header = ({ siteTitle }) => {
 
   return (
     <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://kishuan.netlify.app/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: "https://kishuan.netlify.app/blog",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Projects",
+                item: "https://kishuan.netlify.app/projects",
+              }
+              // ... Add more items as required for your navigation
+            ],
+          })}
+        </script>
+      </Helmet>
       <header
         style={{
           margin: `0.5em`,
@@ -112,7 +131,7 @@ const Header = ({ siteTitle }) => {
             alignItems: "center",
           }}
         >
-         <Logo/>
+          <Logo />
           <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
         </Link>
 
