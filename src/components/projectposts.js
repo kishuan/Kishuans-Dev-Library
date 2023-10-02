@@ -106,12 +106,21 @@ const ProjectPosts = () => {
 
       {/* Post View */}
       {selectedProject && (!isMobile || (isMobile && viewMode === "post")) && (
-        <Grid item xs={12} sm={12} md={7} sx={{ maxHeight: '70vh', overflowY: 'auto' }}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={7}
+          sx={{
+            maxHeight: { md: "70vh" },
+            overflowY: "auto",
+          }}
+        >
           {/* Show the 'Back' button only on mobile and when in 'post' view mode */}
           {viewMode === "post" && isMobile && (
             <Button onClick={() => setViewMode("list")} size="large">
               <ChevronLeftIcon />
-              Back
+              Back to projects
             </Button>
           )}
           <Post

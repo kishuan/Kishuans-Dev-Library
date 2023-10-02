@@ -58,7 +58,7 @@ const Header = ({ siteTitle }) => {
       },
     },
     "& .MuiSwitch-thumb": {
-      backgroundColor: isDarkMode ? "#2c3e50" : "#2c3e50",
+      backgroundColor: theme.palette.secondary.main,
       width: 32,
       height: 32,
       "&:before": {
@@ -115,8 +115,6 @@ const Header = ({ siteTitle }) => {
       </Helmet>
       <header
         style={{
-          margin: `0.5em`,
-          padding: `var(--space-2) var(--size-gutter)`,
           display: `flex`,
           alignItems: `center`,
           justifyContent: `space-between`,
@@ -149,17 +147,17 @@ const Header = ({ siteTitle }) => {
         ) : (
           <Breadcrumbs aria-label="breadcrumb" spacing={3}>
             <Link to="/">
-              <Typography variant="overline" gutterBottom>
+              <Typography aria-label="Home" variant="overline" gutterBottom>
                 HOME
               </Typography>
             </Link>
             <Link to="/blog">
-              <Typography variant="overline" gutterBottom>
+              <Typography aria-label="Blog" variant="overline" gutterBottom>
                 Blog
               </Typography>
             </Link>
             <Link to="/projects">
-              <Typography variant="overline" gutterBottom>
+              <Typography aria-label="projects" variant="overline" gutterBottom>
                 Projects
               </Typography>
             </Link>
@@ -210,7 +208,7 @@ const Header = ({ siteTitle }) => {
           checked={isDarkMode}
           onChange={toggleDarkMode}
           inputProps={{ "aria-label": "controlled" }}
-          color="primary"
+          
         />
       </Box>
     </>

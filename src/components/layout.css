@@ -1,4 +1,15 @@
 :root {
+  --color-text-light: #474e68;
+  --color-text-dark: #ecf2ff;
+
+  --color-background-light: #ecf2ff;
+  --color-background-dark: #474e68;
+
+  --color-primary-light: #474e68;
+  --color-primary-dark: #ecf2ff;
+
+  --color-secondary: #7f8c9d; /* New secondary color */
+
   --color-text: #474e68;
   --color-primary: #474e68;
   --color-background-light: #ecf2ff;
@@ -49,24 +60,27 @@ body {
   overscroll-behavior: none;
 }
 
-/* Define light mode styles */
 .light-mode {
   background-color: var(--color-background-light);
-  color: var(--color-primary);
+  color: var(--color-text-light);
 }
 
 .light-mode a {
-  color: var(--color-primary);
+  color: var(--color-primary-light);
 }
 
-/* Define dark mode styles */
 .dark-mode {
   background-color: var(--color-background-dark);
-  color: #ecf2ff;
+  color: var(--color-text-dark);
 }
 
 .dark-mode a {
-  color: #ecf2ff;
+  color: var(--color-primary-dark);
+}
+
+/* Secondary color styles (applies to both light and dark mode) */
+.secondary-color {
+  color: var(--color-secondary);
 }
 
 /* Rest of your CSS styles... */
@@ -74,13 +88,14 @@ body {
 /* Apply the appropriate styles based on the value of isDarkMode */
 body.light-mode {
   background-color: var(--color-background-light);
-  color: var(--color-primary);
+  color: var(--color-primary-light);
 }
 
 body.dark-mode {
   background-color: var(--color-background-dark);
-  color: #ecf2ff;
-}
+  color: var(--color-primary-dark);
+};
+
 
 :root.light-mode {
   background-color: var(--color-background-light);
@@ -106,4 +121,5 @@ a:hover {
   outline-width: 0;
   text-decoration: none;
 }
+
 

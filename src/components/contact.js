@@ -18,7 +18,7 @@ function Contact() {
 
   return (
     <div>
-      <IconButton size="large" onClick={handleOpen}>
+      <IconButton size="large" onClick={handleOpen} color="inherit">
         <MailOutlineIcon/> 
       </IconButton>
 
@@ -39,7 +39,6 @@ function Contact() {
             maxHeight: "90vh", // Set a maximum height for the modal
             overflowY: "auto", // Enable vertical scrolling if content exceeds the height
             bgcolor: "background.paper",
-            color: "#474E68",
             boxShadow: 24,
             p: { xs: 2, sm: 3, md: 4 },
             borderRadius: 1,
@@ -130,7 +129,7 @@ function ContactForm() {
           errors={state.errors}
         />
         <Button
-          color="secondary"
+          color="primary"
           variant="contained"
           type="submit"
           disabled={state.submitting}
