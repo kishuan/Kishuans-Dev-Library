@@ -10,15 +10,15 @@ import {
   List,
   ListItem,
   ListItemText,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material"
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
+import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 
 const ProjectPosts = () => {
   const [selectedProject, setSelectedProject] = React.useState(null)
   const [viewMode, setViewMode] = React.useState("list")
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme => theme.breakpoints.down("md"))
 
   const data = useStaticQuery(graphql`
     query PortfolioQuery {
@@ -57,10 +57,10 @@ const ProjectPosts = () => {
   return (
     <Grid container spacing={2}>
       {/* List View */}
-      {(viewMode === "list" || !isMobile) && ( // check window width or use a hook/library
+      {(viewMode === "list" || !isMobile) && (
         <Grid item xs={12} sm={12} md={4} sx={{ overflowY: "auto" }}>
           {data.allContentfulPost.nodes.map(post => (
-            <List key={post.id} variant="outlined">
+            <List key={post.id} component="nav" disablePadding>
               <ListItem disablePadding>
                 <ListItemButton
                   size="small"
@@ -68,14 +68,33 @@ const ProjectPosts = () => {
                     setSelectedProject(post)
                     setViewMode("post")
                   }}
+                  sx={{ minHeight: "8rem" }} // 10% of the viewport height
                 >
                   <ListItemText
                     primary={post.title}
                     secondary={post.preview.preview}
+                    sx={{
+                      ".MuiTypography-root": {
+                        fontSize: isMobile ? "0.9rem" : "1rem",
+                      },
+                    }}
                   />
                 </ListItemButton>
               </ListItem>
-              <Divider component="li" variant="inset" />
+              <Divider component="li" />
+              <ListItem
+                size="small"
+                onClick={() => {
+                  setSelectedProject(post)
+                  setViewMode("post")
+                }}
+                sx={{ justifyContent: "flex-end" }}
+              >
+                <Button>
+                  Read More
+                  <ChevronRightIcon />
+                </Button>
+              </ListItem>
             </List>
           ))}
         </Grid>
@@ -86,11 +105,14 @@ const ProjectPosts = () => {
       </Grid>
 
       {/* Post View */}
-      {selectedProject && (!isMobile || (isMobile && viewMode === "post")) &&  (
-        <Grid item xs={12} sm={12} md={7}>
+      {selectedProject && (!isMobile || (isMobile && viewMode === "post")) && (
+        <Grid item xs={12} sm={12} md={7} sx={{ maxHeight: '70vh', overflowY: 'auto' }}>
           {/* Show the 'Back' button only on mobile and when in 'post' view mode */}
           {viewMode === "post" && isMobile && (
-            <Button onClick={() => setViewMode("list")} size="large"><ChevronLeftIcon/>Back</Button>
+            <Button onClick={() => setViewMode("list")} size="large">
+              <ChevronLeftIcon />
+              Back
+            </Button>
           )}
           <Post
             key={selectedProject.id}

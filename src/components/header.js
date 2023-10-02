@@ -58,7 +58,7 @@ const Header = ({ siteTitle }) => {
       },
     },
     "& .MuiSwitch-thumb": {
-      backgroundColor: isDarkMode ? "#362b54" : "#362b54",
+      backgroundColor: isDarkMode ? "#2c3e50" : "#2c3e50",
       width: 32,
       height: 32,
       "&:before": {
