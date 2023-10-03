@@ -14,9 +14,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import useScrollTrigger from "@mui/material/useScrollTrigger"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
-import Divider from "@mui/material/Divider"
-import { List, ListItem, Chip } from "@mui/material"
 
 function ScrollTop(props) {
   const theme = useTheme()
@@ -150,6 +147,7 @@ const Layout = ({ children, title }) => {
           <Fab
             size="small"
             aria-label="scroll back to top"
+            scroll="smooth"
             sx={{
               color: isDarkMode ? theme.palette.dark : theme.palette.light,
               backgroundColor: isDarkMode

@@ -1,5 +1,5 @@
 import * as React from "react"
-import Contact from "./contact.js"
+// import Contact from "./contact.js"
 import Divider from "@mui/material/Divider"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
@@ -23,7 +23,7 @@ function Footer() {
         </Typography>
       </Divider>
       <Stack direction="row" spacing={2} justifyContent="center">
-        <Contact />
+        {/* <Contact /> */}
         <IconButton
           href="https://www.linkedin.com/in/kishuan-espiritu/"
           target="_blank"

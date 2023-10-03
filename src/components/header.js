@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import Contact from "./contact.js"
+
 // import useDayNightMode from "./usedaynightmode.js"
 import { useDarkMode } from "./darkModeContext.js"
 import Divider from "@mui/material/Divider"
@@ -107,7 +107,13 @@ const Header = ({ siteTitle, title }) => {
                 position: 3,
                 name: "Projects",
                 item: "https://kishuan.netlify.app/projects",
-              }
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Contact",
+                item: "https://kishuan.netlify.app/contact",
+              },
               // ... Add more items as required for your navigation
             ],
           })}
@@ -161,7 +167,11 @@ const Header = ({ siteTitle, title }) => {
                 Projects
               </Typography>
             </Link>
-            <Contact />
+            <Link to="/contact">
+              <Typography aria-label="contact" variant="overline" gutterBottom>
+                Contact
+              </Typography>
+            </Link>
           </Breadcrumbs>
         )}
         <Menu
@@ -189,7 +199,7 @@ const Header = ({ siteTitle, title }) => {
             <Link to="/projects">Projects</Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Contact />
+            <Link to="/contact">Contact</Link>
           </MenuItem>
         </Menu>
       </header>
@@ -197,7 +207,7 @@ const Header = ({ siteTitle, title }) => {
         {/* {!isMobile && (
           <Typography variant="subtitle1">decolonizing technology.</Typography>
         )} */}
-         <Typography variant="overline">{title}</Typography>
+        <Typography variant="overline">{title}</Typography>
       </Divider>
       <Box
         display="flex"
@@ -209,7 +219,7 @@ const Header = ({ siteTitle, title }) => {
           checked={isDarkMode}
           onChange={toggleDarkMode}
           inputProps={{ "aria-label": "controlled" }}
-          
+          name="modeToggle"
         />
       </Box>
     </>
