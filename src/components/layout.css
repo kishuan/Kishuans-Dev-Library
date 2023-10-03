@@ -1,6 +1,7 @@
 :root {
   --color-text-light: #474e68;
   --color-text-dark: #ecf2ff;
+  background-color: #ecf2ff;
 
   --color-background-light: #ecf2ff;
   --color-background-dark: #474e68;

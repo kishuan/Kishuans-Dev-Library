@@ -24,7 +24,7 @@ const Header = ({ siteTitle, title }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget)
