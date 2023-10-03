@@ -29,9 +29,9 @@
   color: #8eb814;
 }
 
-.listItem:nth-child(4)::marker {
+/* .listItem:nth-child(4)::marker {
   color: #663399;
-}
+} */
 
 .listItemLink {
   color: var(--color-primary);
