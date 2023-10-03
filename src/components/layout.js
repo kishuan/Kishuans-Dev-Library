@@ -14,6 +14,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import useScrollTrigger from "@mui/material/useScrollTrigger"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import { List, ListItem, Chip } from "@mui/material"
 
 function ScrollTop(props) {
   const theme = useTheme()
@@ -43,11 +46,11 @@ function ScrollTop(props) {
         role="presentation"
         sx={{
           position: "fixed",
-          bottom: theme.spacing(2),  // Equivalent to 16px by default
+          bottom: theme.spacing(2), // Equivalent to 16px by default
           right: theme.spacing(2),
           [theme.breakpoints.up("sm")]: {
-            bottom: theme.spacing(6.25),  // Equivalent to 50px by default
-            right: theme.spacing(10),     // Equivalent to 80px by default
+            bottom: theme.spacing(6.25), // Equivalent to 50px by default
+            right: theme.spacing(10), // Equivalent to 80px by default
           },
         }}
       >
@@ -57,7 +60,7 @@ function ScrollTop(props) {
   )
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -101,8 +104,31 @@ const Layout = ({ children }) => {
       <Container>
         <Header
           siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
+          title={title}
         />
         <main>
+          {title && (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                {/* <Typography variant="h4">{title}</Typography> */}
+              </Box>
+              {/* <Divider
+                variant="middle"
+                textAlign="left"
+                sx={{ marginBottom: theme => theme.spacing(3) }}
+                role="presentation"
+              >
+                 <Typography variant="overline">{title}</Typography>
+              </Divider> */}
+            </>
+          )}
           <Toolbar
             id="back-to-top-anchor"
             style={{ height: "0", minHeight: "0" }}

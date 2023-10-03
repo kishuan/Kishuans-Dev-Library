@@ -19,7 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useTheme, useMediaQuery } from "@mui/material"
 import { Helmet } from "react-helmet"
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, title }) => {
   const [anchorElNav, setAnchorElNav] = useState(null)
   const { isDarkMode, toggleDarkMode } = useDarkMode()
 
@@ -194,9 +194,10 @@ const Header = ({ siteTitle }) => {
         </Menu>
       </header>
       <Divider component="div" role="presentation">
-        {!isMobile && (
+        {/* {!isMobile && (
           <Typography variant="subtitle1">decolonizing technology.</Typography>
-        )}
+        )} */}
+         <Typography variant="overline">{title}</Typography>
       </Divider>
       <Box
         display="flex"

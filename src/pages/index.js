@@ -6,9 +6,9 @@ import AboutMe from "../components/aboutMe"
 import Container from "@mui/material/Container"
 
 const IndexPage = () => (
-  <Layout>
+  <Layout title="Home">
     <Container>
-      <AboutMe />
+      <AboutMe/>
     </Container>
   </Layout>
 )

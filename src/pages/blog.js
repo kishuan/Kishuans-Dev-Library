@@ -6,7 +6,7 @@ import BlogPosts from "../components/blogposts" // import the Post component
 
 
 const AboutMe = () => (
-  <Layout>
+  <Layout title="Blog">
     <Container>
       <BlogPosts />
     </Container>

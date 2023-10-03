@@ -7,7 +7,7 @@ import Container from "@mui/material/Container"
 
 
 const ProjectsPage = () => (
-  <Layout>
+  <Layout title="Projects">
       <Container>
         <ProjectPosts/>
       </Container>
