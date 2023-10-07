@@ -1,21 +1,30 @@
-import React from "react"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import Box from "@mui/material/Box"
-import Chip from "@mui/material/Chip"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemText from "@mui/material/ListItemText"
-import ListItemAvatar from "@mui/material/ListItemAvatar"
-import { GatsbyImage } from "gatsby-plugin-image"
-import Avatar from "@mui/material/Avatar"
-import Typography from "@mui/material/Typography"
-import Stack from "@mui/material/Stack"
-import Divider from "@mui/material/Divider"
-// import { GatsbyImage, getImage } from "gatsby-plugin-image"
-// import Img from 'gatsby-image';
+import React from "react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
-const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
-  // generate readable datetime format
+const Post = ({ title, description, updatedAt, images, tag }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulAsset(contentful_id: { eq: "47sv4JLEMcUbZniHLMifOa" }) {
+        file {
+          url
+        }
+      }
+    }
+  `);
+
+  // Generate readable datetime format
   const formatDateAndTime = dateString => {
     const options = {
       year: "numeric",
@@ -25,9 +34,9 @@ const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
       minute: "2-digit",
       second: "2-digit",
       hour12: true, // Use AM/PM format
-    }
-    return new Date(dateString).toLocaleString(undefined, options)
-  }
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
+  };
 
   return (
     <Box>
@@ -36,7 +45,7 @@ const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
       <List>
         <ListItem>
           <ListItemAvatar>
-            <Avatar alt="" src={avatar.images.fallback.src} />
+            <Avatar alt="" src={data.contentfulAsset.file.url} />
           </ListItemAvatar>
           <ListItemText primary="Kishuan Matteo Espiritu" secondary="he/him" />
         </ListItem>
@@ -74,7 +83,7 @@ const Post = ({ title, description, updatedAt, images, tag, avatar }) => {
         </Stack>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

@@ -27,9 +27,6 @@ const BlogPosts = () => {
           }
         }
       }
-      contentfulAsset(contentful_id: { eq: "47sv4JLEMcUbZniHLMifOa" }) {
-        gatsbyImageData(layout: CONSTRAINED, width: 400)
-      }
     }
   `)
 
@@ -46,7 +43,6 @@ const BlogPosts = () => {
               <span key={tag.id}>{tag.name}</span>
             ))}
             images={post.images || []}
-            avatar={data.contentfulAsset.gatsbyImageData}
           />
         </Grid>
       ))}
