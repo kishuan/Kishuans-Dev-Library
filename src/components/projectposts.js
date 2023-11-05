@@ -53,7 +53,7 @@ const ProjectPosts = () => {
   `)
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {/* List View */}
       {(viewMode === "list" || !isMobile) && (
         <Grid item xs={12} sm={12} md={4} sx={{ overflowY: "auto" }}>
@@ -79,7 +79,7 @@ const ProjectPosts = () => {
                   />
                 </ListItemButton>
               </ListItem>
-              <Divider component="li" />
+
               <ListItem
                 size="small"
                 onClick={() => {
@@ -93,13 +93,14 @@ const ProjectPosts = () => {
                   <ChevronRightIcon />
                 </Button>
               </ListItem>
+
             </List>
           ))}
         </Grid>
       )}
       {/* Vertical Divider for larger screens */}
       <Grid item sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
-        <Divider orientation="vertical" sx={{ height: "100%" }} />
+        <Divider orientation="vertical" sx={{ height: "100%" }} flexItem/>
       </Grid>
 
       {/* Post View */}

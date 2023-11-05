@@ -13,7 +13,6 @@ function Footer() {
   return (
     <footer
       style={{
-        margin: `1em`,
         fontSize: `var(--font-sm)`,
       }}
     >

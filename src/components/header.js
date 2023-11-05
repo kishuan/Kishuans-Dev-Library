@@ -119,11 +119,14 @@ const Header = ({ siteTitle, title }) => {
           })}
         </script>
       </Helmet>
-      <header
-        style={{
-          display: `flex`,
-          alignItems: `center`,
-          justifyContent: `space-between`,
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mt: "1em",
+          ml: { xs: 0, sm: "4em" }, // 'ml' is marginLeft
+          mr: { xs: 0, sm: "4em" }, // 'mr' is marginRight
         }}
       >
         <Link
@@ -202,7 +205,7 @@ const Header = ({ siteTitle, title }) => {
             <Link to="/contact">Contact</Link>
           </MenuItem>
         </Menu>
-      </header>
+      </Box>
       <Divider component="div" role="presentation">
         {/* {!isMobile && (
           <Typography variant="subtitle1">decolonizing technology.</Typography>
@@ -213,7 +216,7 @@ const Header = ({ siteTitle, title }) => {
         display="flex"
         justifyContent="flex-end"
         alignItems="center"
-        padding={1}
+        sx={{ paddingRight: { xs: 0, sm: 5 } }}
       >
         <MaterialUISwitch
           checked={isDarkMode}

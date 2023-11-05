@@ -1,16 +1,14 @@
 import * as React from "react"
-import ProjectPosts from "../components/projectposts";
+import ProjectPosts from "../components/projectposts"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Container from "@mui/material/Container"
 
-
-
 const ProjectsPage = () => (
   <Layout title="Projects">
-      <Container>
-        <ProjectPosts/>
-      </Container>
+    <Container>
+      <ProjectPosts />
+    </Container>
   </Layout>
 )
 
