@@ -61,8 +61,6 @@ function Contact() {
   )
 }
 
-// Rest of your ContactForm remains the same
-
 function ContactForm() {
   const [state, handleSubmit] = useForm("xrgjewbb")
 
