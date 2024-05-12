@@ -40,9 +40,10 @@ const ProjectPosts = () => {
             preview
           }
          images {
-          file {
-            url
-          }
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, aspectRatio: 1.777)
+            file {
+              url
+            }
          }
           metadata {
             tags {
@@ -71,10 +72,7 @@ const ProjectPosts = () => {
               title={selectedProject.title}
               description={selectedProject.description}
               updatedAt={selectedProject.updatedAt}
-              images={selectedProject.images.map(image => ({
-                ...image,
-                gatsbyImageData: image.file.url
-              }))}
+              images={selectedProject.images}
               tag={selectedProject.metadata.tags.map(tag => tag.name).join(", ")} // Adjusted for multiple tags
             />
           </Container>

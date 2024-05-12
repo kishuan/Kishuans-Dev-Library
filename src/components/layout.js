@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import Container from "@mui/material/Container"
 import Footer from "./footer"
 import Header from "./header"
 import { useDarkMode } from "./darkModeContext.js"
@@ -49,10 +48,14 @@ const Layout = ({ children, title }) => {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(true)
-    }, 500) // 500ms delay before content fades in
+    }, 100) // 100ms delay before content fades in
 
     return () => clearTimeout(timer)
   }, []) // This effect should only run once when the component mounts
+
+  React.useEffect(() => {
+    console.log("Current theme:", isDarkMode ? "Dark" : "Light");
+  }, [isDarkMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,55 +70,55 @@ const Layout = ({ children, title }) => {
           siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
           title={title}
         />
-          <main>
-            {title && (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              ></Box>
-            )}
-            <Toolbar
-              id="back-to-top-anchor"
-              style={{ height: "0", minHeight: "0" }}
-            />
-            {visible ? (
-              <Fade in={visible}>
-                <div>{children}</div>
-              </Fade>
-            ) : (
-              <Stack spacing={3} alignItems="center">
-                <Skeleton variant="rectangular" height={80} width="80%" />
-                <Skeleton variant="rectangular" height={50} width="80%" />
-                <Skeleton variant="rectangular" height="60vh" width="80%" />
-              </Stack>
-            )}
-          </main>
-
-          <ScrollTop>
-            <Fab
-              size="small"
-              aria-label="scroll back to top"
-              scroll="smooth"
+        <main>
+          {title && (
+            <Box
               sx={{
-                color: isDarkMode ? theme.palette.dark : theme.palette.light,
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            ></Box>
+          )}
+          <Toolbar
+            id="back-to-top-anchor"
+            style={{ height: "0", minHeight: "0" }}
+          />
+          {visible ? (
+            <Fade in={visible}>
+              <div>{children}</div>
+            </Fade>
+          ) : (
+            <Stack spacing={3} alignItems="center">
+              <Skeleton variant="rectangular" height={80} width="80%" />
+              <Skeleton variant="rectangular" height={50} width="80%" />
+              <Skeleton variant="rectangular" height="60vh" width="80%" />
+            </Stack>
+          )}
+        </main>
+
+        <ScrollTop>
+          <Fab
+            size="small"
+            aria-label="scroll back to top"
+            scroll="smooth"
+            sx={{
+              color: isDarkMode ? theme.palette.dark : theme.palette.light,
+              backgroundColor: isDarkMode
+                ? theme.palette.light
+                : theme.palette.dark,
+              "&:hover": {
                 backgroundColor: isDarkMode
                   ? theme.palette.light
                   : theme.palette.dark,
-                "&:hover": {
-                  backgroundColor: isDarkMode
-                    ? theme.palette.light
-                    : theme.palette.dark,
-                  opacity: 0.8,
-                },
-              }}
-            >
-              <KeyboardArrowUpIcon />
-            </Fab>
-          </ScrollTop>
+                opacity: 0.8,
+              },
+            }}
+          >
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
         <Footer />
       </Box>
     </ThemeProvider>

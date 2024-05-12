@@ -2,27 +2,56 @@ import React from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import { useStaticQuery, graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Slider from "react-slick";
+import { useTheme } from '@mui/material/styles';
 
 const Post = ({ title, description, updatedAt, images, tag }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      contentfulAsset(contentful_id: { eq: "47sv4JLEMcUbZniHLMifOa" }) {
-        file {
-          url
-        }
-      }
-    }
-  `);
+
+  const theme = useTheme();  // This hook provides the theme context
+
+  function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: theme.palette.dark }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style, display: "block", background: theme.palette.dark
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: true,           // Enables navigational dots
+    infinite: true,       // Infinite looping
+    speed: 500,           // Transition speed in milliseconds
+    slidesToShow: 1,      // Number of slides to show at once
+    slidesToScroll: 1,    // Number of slides to scroll at once
+    autoplay: true,       // Enables autoplay of slides
+    autoplaySpeed: 5000,  // Delay in milliseconds between auto-scrolls
+    fade: true,           // Enable fade transitions instead of slide
+    cssEase: 'linear',    // Type of easing function for animations
+    adaptiveHeight: true, // Adjust slider height based on each slide's content
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
+  };
+
 
   // Generate readable datetime format
   const formatDateAndTime = dateString => {
@@ -40,35 +69,29 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
 
   return (
     <Box>
-      <Typography variant="h4">{title}</Typography>
-      <Divider textAlign="center"></Divider>
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar alt="" src={data.contentfulAsset.file.url} />
-          </ListItemAvatar>
-          <ListItemText primary="Kishuan Matteo Espiritu" secondary="he/him" />
-        </ListItem>
-      </List>
+      <Typography variant="h2" textAlign="center">{title}</Typography>
       <Divider textAlign="left">
         <Typography variant="overline">{`${formatDateAndTime(
           updatedAt
         )}`}</Typography>
       </Divider>
 
-      <div id="images">
-        {images &&
-          images.map((image, index) => (
-            <div key={index}>
-              <GatsbyImage
-                image={image.gatsbyImageData}
-                alt={`image ${index + 1}`}
-                layout="fluid"
-                style={{ borderRadius: `1em`, alignItems: `center` }}
-              />
-            </div>
-          ))}
-      </div>
+      {images && images.length > 0 && (
+        <div id="images">
+          <Slider {...settings}>
+            {images.map((image, index) => (
+              <div key={index}>
+                <GatsbyImage
+                  image={getImage(image.gatsbyImageData)}
+                  alt={`image ${index + 1}`}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      )}
+
 
       {documentToReactComponents(JSON.parse(description.raw))}
 
@@ -83,7 +106,9 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
         </Stack>
       </Box>
     </Box>
+
   );
 };
+
 
 export default Post;
