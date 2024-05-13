@@ -7,18 +7,17 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Slider from "react-slick";
-import { useTheme } from '@mui/material/styles';
+
 
 const Post = ({ title, description, updatedAt, images, tag }) => {
 
-  const theme = useTheme();  // This hook provides the theme context
 
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: theme.palette.dark }}
+        style={{ ...style, display: "block", }}
         onClick={onClick}
       />
     );
@@ -30,7 +29,7 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
       <div
         className={className}
         style={{
-          ...style, display: "block", background: theme.palette.dark
+          ...style, display: "block", 
         }}
         onClick={onClick}
       />
@@ -69,7 +68,7 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
 
   return (
     <Box>
-      <Typography variant="h2" textAlign="center">{title}</Typography>
+      <Typography variant="h3" textAlign="center">{title}</Typography>
       <Divider textAlign="left">
         <Typography variant="overline">{`${formatDateAndTime(
           updatedAt

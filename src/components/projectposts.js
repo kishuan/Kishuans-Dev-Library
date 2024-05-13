@@ -58,12 +58,17 @@ const ProjectPosts = () => {
 
   console.log(data.allContentfulPost.nodes); // Log the fetched nodes to inspect their structure
 
+  const handleSelectProject = (project) => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+    setSelectedProject(project);
+  };
+
 
   return (<Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={2}>
     {selectedProject ? (
       <>
         <Grid item xs={12}>
-          <Button onClick={() => setSelectedProject(null)}><ChevronLeftIcon />Back to All Projects</Button>
+          <Button variant="contained" color="secondary" onClick={() => setSelectedProject(null)}><ChevronLeftIcon />Back to All Projects</Button>
         </Grid>
         <Grid item xs={12}>
           <Container>
@@ -82,7 +87,7 @@ const ProjectPosts = () => {
       data.allContentfulPost.nodes.map(post => (
         <Grid item key={post.id} xs={12} sm={6} md={4}>
           <Card sx={{ display: 'flex', flexDirection: 'column', height: 400 }}>
-            <CardActionArea onClick={() => setSelectedProject(post)} sx={{ flex: '1 0 auto' }}>
+            <CardActionArea onClick={() => handleSelectProject(post)} sx={{ flex: '1 0 auto' }}>
               <CardMedia
                 component="img"
                 sx={{ height: 200, objectFit: 'cover' }}
@@ -99,7 +104,7 @@ const ProjectPosts = () => {
               </CardContent>
             </CardActionArea>
             <CardActions sx={{ justifyContent: 'flex-end' }}>
-              <Button size="small" onClick={() => setSelectedProject(post)}>
+              <Button variant="text" color="primary" size="medium" onClick={() => handleSelectProject(post)}>
                 Read More<ChevronRightIcon />
               </Button>
             </CardActions>

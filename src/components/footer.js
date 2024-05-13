@@ -13,7 +13,7 @@ function Footer() {
   return (
     <footer
       style={{
-        fontSize: `var(--font-sm)`,
+        fontSize: `var(--font-lg)`,
       }}
     >
       <Divider>
@@ -21,7 +21,7 @@ function Footer() {
           © {new Date().getFullYear()} &middot; kishuan's.
         </Typography>
       </Divider>
-      <Stack direction="row" spacing={2} justifyContent="center">
+      <Stack direction="row" spacing={3} justifyContent="center">
         {/* <Contact /> */}
         <IconButton
           href="https://www.linkedin.com/in/kishuan-espiritu/"

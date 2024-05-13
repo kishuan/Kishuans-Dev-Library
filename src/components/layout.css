@@ -10,9 +10,9 @@
   --color-background-dark: #474e68;
 
   --color-primary-light: #474e68;
-  --color-primary-dark: #ecf2ff;
+  --color-primary-dark: #ecf2ff; 
 
-  --color-secondary: #7f8c9d; /* New secondary color */
+  --color-secondary: #7f8c9d; 
   --color-primary: #474e68;
   --color-background-light: #ecf2ff;
   --color-background-dark: #474e68;
@@ -142,12 +142,12 @@ a:hover {
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-.dark-mode .slick-prev:before, 
+/* .dark-mode .slick-prev:before, 
 .dark-mode .slick-next:before {
   color: var(--color-primary-dark); 
-}
+} 
 
 .light-mode .slick-prev:before, 
 .light-mode .slick-next:before {
   color: var(--color-primary);
-}
+} */

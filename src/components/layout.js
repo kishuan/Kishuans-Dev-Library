@@ -1,18 +1,14 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
+import getTheme from './theme' 
 import Footer from "./footer"
 import Header from "./header"
 import { useDarkMode } from "./darkModeContext.js"
-import { Fade } from "@mui/material"
+import { Fade, Box, Toolbar, Skeleton, Stack, Fab } from "@mui/material"
 import "./layout.css"
-import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
-import Fab from "@mui/material/Fab"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import ScrollTop from "./scrollTop"
-import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
 
 const Layout = ({ children, title }) => {
   const data = useStaticQuery(graphql`
@@ -23,71 +19,28 @@ const Layout = ({ children, title }) => {
         }
       }
     }
-  `)
+  `);
 
-  const { isDarkMode } = useDarkMode()
+  const { isDarkMode } = useDarkMode();
+  const theme = React.useMemo(() => getTheme(isDarkMode), [isDarkMode]);
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: isDarkMode ? "dark" : "light",
-          secondary: {
-            main: "#2c3e50",
-          },
-          dark: "#474e68",
-          light: "#ecf2ff",
-        },
-      }),
-    [isDarkMode]
-  )
-
-  const [visible, setVisible] = React.useState(false) // start with content hidden
-
-  // Show content after a set delay
+  const [visible, setVisible] = React.useState(false);
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      setVisible(true)
-    }, 100) // 100ms delay before content fades in
-
-    return () => clearTimeout(timer)
-  }, []) // This effect should only run once when the component mounts
-
-  React.useEffect(() => {
-    console.log("Current theme:", isDarkMode ? "Dark" : "Light");
-  }, [isDarkMode]);
+      setVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh", // make sure the container is at least as tall as the viewport
-        }}
-      >
-        <Header
-          siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`}
-          title={title}
-        />
+      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Header siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`} title={title} />
         <main>
-          {title && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            ></Box>
-          )}
-          <Toolbar
-            id="back-to-top-anchor"
-            style={{ height: "0", minHeight: "0" }}
-          />
+          <Toolbar id="back-to-top-anchor" style={{ height: "0", minHeight: "0" }} />
           {visible ? (
             <Fade in={visible}>
-              <div>{children}</div>
+              <Box sx={{ padding: theme.spacing(3) }}>{children}</Box> 
             </Fade>
           ) : (
             <Stack spacing={3} alignItems="center">
@@ -97,32 +50,15 @@ const Layout = ({ children, title }) => {
             </Stack>
           )}
         </main>
-
         <ScrollTop>
-          <Fab
-            size="small"
-            aria-label="scroll back to top"
-            scroll="smooth"
-            sx={{
-              color: isDarkMode ? theme.palette.dark : theme.palette.light,
-              backgroundColor: isDarkMode
-                ? theme.palette.light
-                : theme.palette.dark,
-              "&:hover": {
-                backgroundColor: isDarkMode
-                  ? theme.palette.light
-                  : theme.palette.dark,
-                opacity: 0.8,
-              },
-            }}
-          >
+          <Fab size="small" aria-label="scroll back to top" scroll="smooth" color="secondary">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
         <Footer />
       </Box>
     </ThemeProvider>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

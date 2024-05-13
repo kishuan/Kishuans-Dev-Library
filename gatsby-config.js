@@ -11,7 +11,7 @@ if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
 
 module.exports = {
   siteMetadata: {
-    title: `Kishuan's Dev Library`,
+    title: `KISHUAN MATTEO`,
     description: `a repository of Kishuan's development projects and blog posts.`,
     author: `@kishuan`,
     siteUrl: `https://kishuan.netlify.app/`,
