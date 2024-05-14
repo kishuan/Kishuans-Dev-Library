@@ -4,9 +4,7 @@ import { Link } from "gatsby"
 // import useDayNightMode from "./usedaynightmode.js"
 import { useDarkMode } from "./darkModeContext.js"
 import Divider from "@mui/material/Divider"
-import MaterialUISwitch from "./switch.js"
 import Box from "@mui/material/Box"
-import Breadcrumbs from "@mui/material/Breadcrumbs"
 import Typography from "@mui/material/Typography"
 import Logo from "./logo.js"
 
@@ -18,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText  } from "@mui/material"
 import { Helmet } from "react-helmet"
 
+import ThemeToggle from './themeToggle';
 
 import CustomAppBar from "./CustomAppBar.js"
 
@@ -186,12 +185,7 @@ const Header = ({ siteTitle, title }) => {
         sx={{ paddingRight: { xs: 0, sm: 5 } }}
       >
 
-        <MaterialUISwitch
-          checked={isDarkMode}
-          onChange={toggleDarkMode}
-          inputProps={{ "aria-label": "controlled" }}
-          name="modeToggle"
-        />
+        <ThemeToggle/>
 
       </Box>
     </>

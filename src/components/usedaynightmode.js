@@ -1,27 +1,26 @@
 import { useState, useEffect } from "react";
 
 function useDayNightMode() {
-  // Initial state is derived from localStorage or default value
-  const storedValue = 
-    typeof window !== "undefined" && 
-    localStorage.getItem("isDarkMode");
-    
-  const initialIsDarkMode = storedValue ? JSON.parse(storedValue) : false;
+  // Read the initial theme from cookies instead of localStorage
+  const getInitialTheme = () => {
+    const themeFromCookie = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return themeFromCookie === 'dark';  // Returns true if dark, false otherwise
+  };
 
-  const [isDarkMode, setIsDarkMode] = useState(initialIsDarkMode);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
+
+  useEffect(() => {
+    // Sync the dark mode class with the current theme state
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.documentElement.classList.toggle("dark-mode", isDarkMode);
+
+    // Update the cookie when the theme changes
+    document.cookie = `theme=${isDarkMode ? 'dark' : 'light'}; path=/; expires=${new Date(Date.now() + 31536000 * 1000).toUTCString()}`;
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
-
-  useEffect(() => {
-    // Add or remove the dark mode class from the body
-    document.body.classList.toggle("dark-mode", isDarkMode);
-    document.documentElement.classList.toggle("dark-mode", isDarkMode);
-
-    // Update the localStorage only if there's a change
-    localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
 
   return [isDarkMode, toggleTheme];
 }
