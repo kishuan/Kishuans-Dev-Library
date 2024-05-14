@@ -139,7 +139,7 @@ const Header = ({ siteTitle, title }) => {
           </>
 
         ) : (
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center', color: 'primary' }}>
             <Link to="/"><Button aria-label="Home">HOME</Button></Link>
             <Link to="/blog"><Button aria-label="Blog">Blog</Button></Link>
             <Link to="/projects"><Button aria-label="projects">Projects</Button></Link>
