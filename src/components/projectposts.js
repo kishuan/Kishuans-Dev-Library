@@ -68,7 +68,7 @@ const ProjectPosts = () => {
     {selectedProject ? (
       <>
         <Grid item xs={12}>
-          <Button variant="contained" color="secondary" onClick={() => setSelectedProject(null)}><ChevronLeftIcon />Back to All Projects</Button>
+          <Button variant="text" color="secondary" onClick={() => setSelectedProject(null)}><ChevronLeftIcon />Back to All Projects</Button>
         </Grid>
         <Grid item xs={12}>
           <Container>

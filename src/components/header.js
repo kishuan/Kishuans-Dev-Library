@@ -13,7 +13,7 @@ import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
-import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText  } from "@mui/material"
+import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText } from "@mui/material"
 import { Helmet } from "react-helmet"
 
 import ThemeToggle from './themeToggle';
@@ -51,12 +51,17 @@ const Header = ({ siteTitle, title }) => {
       <List>
         {['Home', 'Blog', 'Projects', 'Contact'].map((text) => (
           <ListItem button key={text} component={Link} to={text === 'Home' ? "/" : `/${text.toLowerCase()}`}>
-            <ListItemText primary={text} />
+            <ListItemText
+              primary=
+                  {text}
+            />
           </ListItem>
         ))}
       </List>
     </Box>
   );
+
+
 
 
   return (
@@ -138,12 +143,13 @@ const Header = ({ siteTitle, title }) => {
           </>
 
         ) : (
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center', color: 'primary' }}>
-            <Link to="/"><Button aria-label="Home">HOME</Button></Link>
-            <Link to="/blog"><Button aria-label="Blog">Blog</Button></Link>
-            <Link to="/projects"><Button aria-label="projects">Projects</Button></Link>
-            <Link to="/contact"><Button aria-label="contact">Contact</Button></Link>
-          </Box>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center', color: 'primary'}}>
+          <Link to="/"><Button aria-label="Home" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>HOME</Button></Link>
+          <Link to="/blog"><Button aria-label="Blog" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Blog</Button></Link>
+          <Link to="/projects"><Button aria-label="Projects" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Projects</Button></Link>
+          <Link to="/contact"><Button aria-label="Contact" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Contact</Button></Link>
+        </Box>
+        
         )}
         <Menu
           id="mobile-nav-menu"
@@ -185,7 +191,7 @@ const Header = ({ siteTitle, title }) => {
         sx={{ paddingRight: { xs: 0, sm: 5 } }}
       >
 
-        <ThemeToggle/>
+        <ThemeToggle />
 
       </Box>
     </>

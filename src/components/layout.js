@@ -1,14 +1,14 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider } from "@mui/material/styles"
-import getTheme from './theme' 
-import Footer from "./footer"
-import Header from "./header"
-import { useDarkMode } from "./darkModeContext.js"
-import { Fade, Box, Toolbar, Skeleton, Stack, Fab } from "@mui/material"
-import "./layout.css"
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import ScrollTop from "./scrollTop"
+import * as React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import { ThemeProvider } from "@mui/material/styles";
+import getTheme from './theme';
+import Footer from "./footer";
+import Header from "./header";
+import { useDarkMode } from "./darkModeContext.js";
+import { Fade, Box, Toolbar, Skeleton, Stack, Fab } from "@mui/material";
+import "./layout.css";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ScrollTop from "./scrollTop";
 
 const Layout = ({ children, title }) => {
   const data = useStaticQuery(graphql`
@@ -35,12 +35,20 @@ const Layout = ({ children, title }) => {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-        <Header siteTitle={data.site.siteMetadata?.title || `Kishuan's Dev Space`} title={title} />
+        <Header siteTitle={data.site.siteMetadata?.title || `My Site`} title={title} />
         <main>
           <Toolbar id="back-to-top-anchor" style={{ height: "0", minHeight: "0" }} />
           {visible ? (
             <Fade in={visible}>
-              <Box sx={{ padding: theme.spacing(3) }}>{children}</Box> 
+              <Box
+                sx={{
+                  padding: theme.spacing(3),
+                  maxWidth: "1200px", // Set a maxWidth for content width
+                  margin: "0 auto",   // Center the content
+                }}
+              >
+                {children}
+              </Box>
             </Fade>
           ) : (
             <Stack spacing={3} alignItems="center">
@@ -51,7 +59,7 @@ const Layout = ({ children, title }) => {
           )}
         </main>
         <ScrollTop>
-          <Fab size="small" aria-label="scroll back to top" scroll="smooth" color="secondary">
+          <Fab size="small" aria-label="scroll back to top" color="secondary">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>

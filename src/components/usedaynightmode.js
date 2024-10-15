@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
 
 function useDayNightMode() {
-  // This function only runs on the client side after mounting
+  // Check if code is running in the browser
+  const isBrowser = typeof window !== "undefined";
+
+  // Read the initial theme from cookies if in the browser
   const getInitialTheme = () => {
-    if (typeof document !== "undefined") {  // Check if document is available
-      const themeFromCookie = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
-      return themeFromCookie === 'dark';  // Returns true if dark, false otherwise
-    }
-    return false; // Default theme if document is not available
+    if (!isBrowser) return false; // Default to light mode if SSR
+    const themeFromCookie = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return themeFromCookie === 'dark';  // Returns true if dark, false otherwise
   };
 
   const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
 
   useEffect(() => {
-    // This effect only runs on the client side
-    if (typeof document !== "undefined") {
+    if (isBrowser) {
+      // Sync the dark mode class with the current theme state
       document.body.classList.toggle("dark-mode", isDarkMode);
       document.documentElement.classList.toggle("dark-mode", isDarkMode);
+
+      // Update the cookie when the theme changes
       document.cookie = `theme=${isDarkMode ? 'dark' : 'light'}; path=/; expires=${new Date(Date.now() + 31536000 * 1000).toUTCString()}`;
     }
   }, [isDarkMode]);

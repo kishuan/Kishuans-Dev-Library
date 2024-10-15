@@ -6,9 +6,14 @@ const ThemeToggle = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode(); // Use context if needed
 
   const toggleTheme = () => {
-    const newTheme = isDarkMode ? 'light' : 'dark';
+    // Toggle the dark mode state
+    toggleDarkMode();
+
+    // Update the cookie to reflect the new theme
+    const newTheme = !isDarkMode ? 'dark' : 'light';
     document.cookie = `theme=${newTheme}; path=/; expires=${new Date(Date.now() + 31536000 * 1000).toUTCString()}`;
-    window.location.reload(); // Reload the page to apply the theme server-side
+    
+    // Remove window.location.reload() to avoid reloading the entire page
   };
 
   return (
