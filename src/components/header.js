@@ -1,36 +1,34 @@
-import React, { useState } from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react";
+import { Link } from "gatsby";
 
 // import useDayNightMode from "./usedaynightmode.js"
-import { useDarkMode } from "./darkModeContext.js"
-import Divider from "@mui/material/Divider"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import Logo from "./logo.js"
+import { useDarkMode } from "./darkModeContext.js";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Logo from "./logo.js";
 
 // For AppBar display on Mobile
-import Menu from "@mui/material/Menu"
-import MenuItem from "@mui/material/MenuItem"
-import IconButton from "@mui/material/IconButton"
-import MenuIcon from "@mui/icons-material/Menu"
-import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText } from "@mui/material"
-import { Helmet } from "react-helmet"
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 import ThemeToggle from './themeToggle';
-
-import CustomAppBar from "./CustomAppBar.js"
-
+import CustomAppBar from "./CustomAppBar.js";
 
 const Header = ({ siteTitle, title }) => {
-  const [anchorElNav, setAnchorElNav] = useState(null)
-  const { isDarkMode, toggleDarkMode } = useDarkMode()
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const { isDarkMode } = useDarkMode();
 
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
+    setAnchorElNav(null);
+  };
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -52,17 +50,14 @@ const Header = ({ siteTitle, title }) => {
         {['Home', 'Blog', 'Projects', 'Contact'].map((text) => (
           <ListItem button key={text} component={Link} to={text === 'Home' ? "/" : `/${text.toLowerCase()}`}>
             <ListItemText
-              primary=
-                  {text}
+              primary={text}
+              sx={{ color: theme.palette.text.primary }}  // Apply dynamic text color
             />
           </ListItem>
         ))}
       </List>
     </Box>
   );
-
-
-
 
   return (
     <>
@@ -72,30 +67,10 @@ const Header = ({ siteTitle, title }) => {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://kishuan.netlify.app/",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Blog",
-                item: "https://kishuan.netlify.app/blog",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Projects",
-                item: "https://kishuan.netlify.app/projects",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Contact",
-                item: "https://kishuan.netlify.app/contact",
-              },
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://kishuan.netlify.app/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://kishuan.netlify.app/blog" },
+              { "@type": "ListItem", position: 3, name: "Projects", item: "https://kishuan.netlify.app/projects" },
+              { "@type": "ListItem", position: 3, name: "Contact", item: "https://kishuan.netlify.app/contact" },
             ],
           })}
         </script>
@@ -121,7 +96,7 @@ const Header = ({ siteTitle, title }) => {
           }}
         >
           <Logo />
-          <span style={{ marginLeft: "10px" }}>{siteTitle}</span>
+          <span style={{ marginLeft: "10px", color: theme.palette.text.primary }}>{siteTitle}</span>
         </Link>
         {isMobile ? (
           <>
@@ -133,23 +108,65 @@ const Header = ({ siteTitle, title }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Drawer
-              anchor="right"
-              open={drawerOpen}
-              onClose={toggleDrawer(false)}
-            >
+            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
               {drawerList()}
             </Drawer>
           </>
-
         ) : (
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center', color: 'primary'}}>
-          <Link to="/"><Button aria-label="Home" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>HOME</Button></Link>
-          <Link to="/blog"><Button aria-label="Blog" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Blog</Button></Link>
-          <Link to="/projects"><Button aria-label="Projects" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Projects</Button></Link>
-          <Link to="/contact"><Button aria-label="Contact" sx={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}>Contact</Button></Link>
-        </Box>
-        
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+            <Link to="/">
+              <Button
+                aria-label="Home"
+                sx={{
+                  color: theme.palette.text.primary,  // Apply dynamic text color
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem',
+                  textTransform: 'uppercase',
+                }}
+              >
+                HOME
+              </Button>
+            </Link>
+            <Link to="/blog">
+              <Button
+                aria-label="Blog"
+                sx={{
+                  color: theme.palette.text.primary,  // Apply dynamic text color
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Blog
+              </Button>
+            </Link>
+            <Link to="/projects">
+              <Button
+                aria-label="Projects"
+                sx={{
+                  color: theme.palette.text.primary,  // Apply dynamic text color
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Projects
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button
+                aria-label="Contact"
+                sx={{
+                  color: theme.palette.text.primary,  // Apply dynamic text color
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Contact
+              </Button>
+            </Link>
+          </Box>
         )}
         <Menu
           id="mobile-nav-menu"
@@ -167,16 +184,16 @@ const Header = ({ siteTitle, title }) => {
           onClose={handleCloseNavMenu}
         >
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/">Home</Link>
+            <Link to="/" style={{ color: theme.palette.text.primary }}>Home</Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/blog">Blog</Link>
+            <Link to="/blog" style={{ color: theme.palette.text.primary }}>Blog</Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/projects">Projects</Link>
+            <Link to="/projects" style={{ color: theme.palette.text.primary }}>Projects</Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact" style={{ color: theme.palette.text.primary }}>Contact</Link>
           </MenuItem>
         </Menu>
       </Box>
@@ -190,12 +207,10 @@ const Header = ({ siteTitle, title }) => {
         alignItems="center"
         sx={{ paddingRight: { xs: 0, sm: 5 } }}
       >
-
         <ThemeToggle />
-
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
