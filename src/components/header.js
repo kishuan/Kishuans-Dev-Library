@@ -91,6 +91,7 @@ const Header = ({ siteTitle, title }) => {
         <Link
           to="/"
           style={{
+            color: "inherit",
             fontSize: "var(--font-lg)",
             textDecoration: "none",
             display: "flex",

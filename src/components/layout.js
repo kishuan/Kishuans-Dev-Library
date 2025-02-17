@@ -70,7 +70,7 @@ const Layout = ({ children, title }) => {
           )}
         </main>
         <ScrollTop>
-          <Fab size="small" aria-label="scroll back to top" color="secondary">
+          <Fab size="small" aria-label="scroll back to top" color="primary">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>

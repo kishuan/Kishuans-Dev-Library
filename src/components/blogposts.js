@@ -56,7 +56,7 @@ const BlogPosts = () => {
             <Box>
               <Typography variant="h5">{post.title}</Typography>
               <Divider />
-              <Typography variant="body1" color="textSecondary">
+              <Typography variant="body1" color="primary">
                 {previewText}
               </Typography>
               <Link to={`/blog/${slug}`} style={{ textDecoration: "none" }}>

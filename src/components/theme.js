@@ -7,15 +7,15 @@ const theme = createTheme({
       main: "#474e68"
     },
     secondary: {
-      main: "#7f8c9d"
+      main: "#33354a"
     },
     background: {
       default: "#ecf2ff",
-      paper: "#f9f9f9"
+      paper: "#ecf2ff"
     },
     text: {
       primary: "#33354a",
-      secondary: "#626a82"
+      secondary: "#474e68",
     }
   }
 });

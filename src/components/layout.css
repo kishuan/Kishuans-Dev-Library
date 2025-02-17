@@ -1,32 +1,26 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-/* :root {
-  --color-text-light: #474e68;
-  --color-text-dark: #ecf2ff;
-  background-color: #ecf2ff;
-
-  --color-background-light: #ecf2ff;
-  --color-background-dark: #474e68;
-
-  --color-primary-light: #474e68;
-  --color-primary-dark: #ecf2ff; 
-
-  --color-secondary: #7f8c9d; 
+/* Define a few standard variables that align with your theme.js */
+:root {
+  /* Color variables matching theme.js */
   --color-primary: #474e68;
-  --color-background-light: #ecf2ff;
-  --color-background-dark: #474e68;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-  --font-size-lg: 18px;
-  --font-size-md: 16px;
-  --font-size-sm: 14px;
-  --font-size-xs: 12px;
+  --color-secondary: #7f8c9d;
+  --color-background: #ecf2ff;
+  --color-text-primary: #33354a;
+  --color-text-secondary: #626a82;
+
+  /* Font and spacing variables */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, 
+               "Apple Color Emoji", "Segoe UI Emoji";
+  --font-size-lg: 1.25rem;
+  --font-size-md: 1rem;
+  --font-size-sm: 0.875rem;
+
   --line-height-loose: 1.75;
   --line-height-normal: 1.5;
   --line-height-dense: 1.1;
+
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 16px;
@@ -44,131 +38,20 @@ html {
   font-size: var(--font-size-md);
   line-height: var(--line-height-normal);
   overflow-y: scroll;
-  background-color: var(--color-background-light);
+  background-color: var(--color-background);
   height: 100%;
   width: 100%;
 }
 
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-weight: normal;
   margin: 0;
-  word-wrap: break-word;
-  background-color: var(--color-background-light);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
   min-height: 100vh;
   overscroll-behavior: none;
-} */
-
-/* .light-mode {
-  background-color: var(--color-background-light);
-  color: var(--color-text-light);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;
 }
-
-.light-mode a {
-  color: var(--color-primary-light);
-}
-
-.dark-mode {
-  background-color: var(--color-background-dark);
-  color: var(--color-text-dark);
-}
-
-.dark-mode a {
-  color: var(--color-primary-dark);
-} */
-
-/* Secondary color styles (applies to both light and dark mode) */
-/* .secondary-color {
-  color: var(--color-secondary);
-} */
-
-/* Rest of your CSS styles... */
-
-/* Apply the appropriate styles based on the value of isDarkMode */
-/* body.light-mode {
-  background-color: var(--color-background-light);
-  color: var(--color-primary-light);
-}
-
-body.dark-mode {
-  background-color: var(--color-background-dark);
-  color: var(--color-primary-dark);
-};
-
-
-:root.light-mode {
-  background-color: var(--color-background-light);
-}
-
-:root.dark-mode {
-  background-color: var(--color-background-dark);
-} */
-
-/* Links */
-/* a {
-  background-color: transparent;
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 2px;
-}
-
-a:active,
-a:hover {
-  outline-width: 0;
-  text-decoration: none;
-}
-
-.gatsby-image-wrapper img {
-  width: 100%;  
-  height: 100%; 
-  object-fit: contain; 
-  object-position: center center;
-}
-
-
-/* slider styling */
-/* General slider arrow styles */
-/* .slick-prev, .slick-next {
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background 0.3s, box-shadow 0.3s, color 0.3s;
-} */
-
-/* .dark-mode .slick-prev:before, 
-.dark-mode .slick-next:before {
-  color: var(--color-primary-dark); 
-} 
-
-.light-mode .slick-prev:before, 
-.light-mode .slick-next:before {
-  color: var(--color-primary);
-} */
-
-
-/* html[data-theme="light"] {
-  background-color: var(--color-background-light);
-  color: var(--color-text-light);
-}
-
-html[data-theme="dark"] {
-  background-color: var(--color-background-dark);
-  color: var(--color-text-dark);
-} */
-
-/* Override background for body */
-/* body {
-  background-color: var(--color-background-light);
-  transition: background-color 0.3s ease-in-out;
-}
-
-html[data-theme="dark"] body {
-  background-color: var(--color-background-dark);
-} */
