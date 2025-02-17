@@ -1,9 +1,11 @@
 import React from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 // Helper function to create slugs from titles
 const createSlug = (title) => {
@@ -56,8 +58,9 @@ const BlogPosts = () => {
               <Typography variant="body1" color="textSecondary">
                 {previewText}
               </Typography>
-              <Link to={`/blog/${slug}`} style={{ textDecoration: "none", color: "blue" }}>
-                Read More
+              <Link to={`/blog/${slug}`} style={{ textDecoration: "none" }}>
+                <Button variant="text" color="primary" size="medium">Read More<ChevronRightIcon />
+                </Button>
               </Link>
             </Box>
           </Grid>

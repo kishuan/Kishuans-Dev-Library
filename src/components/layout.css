@@ -1,7 +1,7 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-:root {
+/* :root {
   --color-text-light: #474e68;
   --color-text-dark: #ecf2ff;
   background-color: #ecf2ff;
@@ -60,9 +60,9 @@ body {
   background-color: var(--color-background-light);
   min-height: 100vh;
   overscroll-behavior: none;
-}
+} */
 
-.light-mode {
+/* .light-mode {
   background-color: var(--color-background-light);
   color: var(--color-text-light);
 }
@@ -78,17 +78,17 @@ body {
 
 .dark-mode a {
   color: var(--color-primary-dark);
-}
+} */
 
 /* Secondary color styles (applies to both light and dark mode) */
-.secondary-color {
+/* .secondary-color {
   color: var(--color-secondary);
-}
+} */
 
 /* Rest of your CSS styles... */
 
 /* Apply the appropriate styles based on the value of isDarkMode */
-body.light-mode {
+/* body.light-mode {
   background-color: var(--color-background-light);
   color: var(--color-primary-light);
 }
@@ -105,10 +105,10 @@ body.dark-mode {
 
 :root.dark-mode {
   background-color: var(--color-background-dark);
-}
+} */
 
 /* Links */
-a {
+/* a {
   background-color: transparent;
   color: var(--color-primary);
   text-decoration: none;
@@ -134,13 +134,13 @@ a:hover {
 
 /* slider styling */
 /* General slider arrow styles */
-.slick-prev, .slick-next {
+/* .slick-prev, .slick-next {
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
-}
+} */ */
 
 /* .dark-mode .slick-prev:before, 
 .dark-mode .slick-next:before {
@@ -151,3 +151,56 @@ a:hover {
 .light-mode .slick-next:before {
   color: var(--color-primary);
 } */
+
+:root {
+  --color-text-light: #333; /* Dark text for light mode */
+  --color-text-dark: #ecf2ff; /* Light text for dark mode */
+  --color-background-light: #ecf2ff;
+  --color-background-dark: #1e1e2e; /* Darker background */
+
+  --color-primary-light: #474e68;
+  --color-primary-dark: #ecf2ff; 
+
+  --color-secondary: #7f8c9d;
+  --color-primary: #474e68;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --font-size-lg: 18px;
+  --font-size-md: 16px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --line-height-loose: 1.75;
+  --line-height-normal: 1.5;
+  --line-height-dense: 1.1;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 64px;
+  --size-content: 54rem;
+  --size-gutter: var(--spacing-5);
+  --size-gap: var(--spacing-6);
+}
+
+html[data-theme="light"] {
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+}
+
+html[data-theme="dark"] {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+/* Override background for body */
+body {
+  background-color: var(--color-background-light);
+  transition: background-color 0.3s ease-in-out;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--color-background-dark);
+}

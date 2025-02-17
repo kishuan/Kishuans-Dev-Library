@@ -11,6 +11,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Slider from 'react-slick';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from './layout';  // Import the Layout component
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 // Helper function to format date
 const formatDateAndTime = dateString => {
@@ -47,7 +50,10 @@ const BlogPost = ({ data }) => {
     <Layout title="blog">  {/* Wrap content inside the Layout */}
       {/* Add Scroll anchor for back-to-top button */}
       <Toolbar id="back-to-top-anchor" style={{ height: "0", minHeight: "0" }} />
-
+      <Link href={`/blog/`} style={{ textDecoration: "none" }}>
+        <Button variant="text" color="primary" size="medium"><ChevronLeftIcon />Back to all blog posts
+        </Button>
+      </Link>
       <Container>
         <Box>
           {/* Title and Date */}
