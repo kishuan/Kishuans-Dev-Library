@@ -8,16 +8,13 @@ import Divider from "@mui/material/Divider";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Slider from "react-slick";
 
-
 const Post = ({ title, description, updatedAt, images, tag }) => {
-
-
   function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", }}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       />
     );
@@ -28,31 +25,27 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
     return (
       <div
         className={className}
-        style={{
-          ...style, display: "block", 
-        }}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       />
     );
   }
 
   const settings = {
-    dots: true,           // Enables navigational dots
-    infinite: true,       // Infinite looping
-    speed: 500,           // Transition speed in milliseconds
-    slidesToShow: 1,      // Number of slides to show at once
-    slidesToScroll: 1,    // Number of slides to scroll at once
-    autoplay: true,       // Enables autoplay of slides
-    autoplaySpeed: 5000,  // Delay in milliseconds between auto-scrolls
-    fade: true,           // Enable fade transitions instead of slide
-    cssEase: 'linear',    // Type of easing function for animations
-    adaptiveHeight: true, // Adjust slider height based on each slide's content
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    cssEase: 'linear',
+    adaptiveHeight: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
   };
 
-
-  // Generate readable datetime format
   const formatDateAndTime = dateString => {
     const options = {
       year: "numeric",
@@ -61,18 +54,18 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      hour12: true, // Use AM/PM format
+      hour12: true
     };
     return new Date(dateString).toLocaleString(undefined, options);
   };
 
   return (
     <Box>
-      <Typography variant="h3" textAlign="center">{title}</Typography>
+      <Typography variant="h3" textAlign="center">
+        {title}
+      </Typography>
       <Divider textAlign="left">
-        <Typography variant="overline">{`${formatDateAndTime(
-          updatedAt
-        )}`}</Typography>
+        <Typography variant="overline">{formatDateAndTime(updatedAt)}</Typography>
       </Divider>
 
       {images && images.length > 0 && (
@@ -91,12 +84,11 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
         </div>
       )}
 
-
       {documentToReactComponents(JSON.parse(description.raw))}
 
       <Box mt={2}>
         <Divider textAlign="left">
-          <Typography variant="overline">tags: </Typography>
+          <Typography variant="overline">tags:</Typography>
         </Divider>
       </Box>
       <Box mt={2}>
@@ -105,9 +97,7 @@ const Post = ({ title, description, updatedAt, images, tag }) => {
         </Stack>
       </Box>
     </Box>
-
   );
 };
-
 
 export default Post;

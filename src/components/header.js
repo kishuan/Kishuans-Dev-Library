@@ -1,39 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
-
-// import useDayNightMode from "./usedaynightmode.js"
-import { useDarkMode } from "./darkModeContext.js";
-import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Logo from "./logo.js";
-
-// For AppBar display on Mobile
+import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme, useMediaQuery, Button, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import Button from "@mui/material/Button";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { useTheme, useMediaQuery } from "@mui/material";
 import { Helmet } from "react-helmet";
 
-import ThemeToggle from './themeToggle';
-import CustomAppBar from "./CustomAppBar.js";
+import Logo from "./logo";
+import CustomAppBar from "./CustomAppBar";
 
 const Header = ({ siteTitle, title }) => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const { isDarkMode } = useDarkMode();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  const toggleDrawer = open => event => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
     setDrawerOpen(open);
@@ -47,12 +47,14 @@ const Header = ({ siteTitle, title }) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Home', 'Blog', 'Projects', 'Contact'].map((text) => (
-          <ListItem button key={text} component={Link} to={text === 'Home' ? "/" : `/${text.toLowerCase()}`}>
-            <ListItemText
-              primary={text}
-              sx={{ color: theme.palette.text.primary }}  // Apply dynamic text color
-            />
+        {["Home", "Blog", "Projects", "Contact"].map(text => (
+          <ListItem
+            button
+            key={text}
+            component={Link}
+            to={text === "Home" ? "/" : `/${text.toLowerCase()}`}
+          >
+            <ListItemText primary={text} sx={{ color: theme.palette.text.primary }} />
           </ListItem>
         ))}
       </List>
@@ -70,8 +72,8 @@ const Header = ({ siteTitle, title }) => {
               { "@type": "ListItem", position: 1, name: "Home", item: "https://kishuan.netlify.app/" },
               { "@type": "ListItem", position: 2, name: "Blog", item: "https://kishuan.netlify.app/blog" },
               { "@type": "ListItem", position: 3, name: "Projects", item: "https://kishuan.netlify.app/projects" },
-              { "@type": "ListItem", position: 3, name: "Contact", item: "https://kishuan.netlify.app/contact" },
-            ],
+              { "@type": "ListItem", position: 4, name: "Contact", item: "https://kishuan.netlify.app/contact" }
+            ]
           })}
         </script>
       </Helmet>
@@ -82,21 +84,23 @@ const Header = ({ siteTitle, title }) => {
           alignItems: "center",
           justifyContent: "space-between",
           mt: "1em",
-          ml: { xs: 0, sm: "4em" }, // 'ml' is marginLeft
-          mr: { xs: 0, sm: "4em" }, // 'mr' is marginRight
+          ml: { xs: 0, sm: "4em" },
+          mr: { xs: 0, sm: "4em" }
         }}
       >
         <Link
           to="/"
           style={{
-            fontSize: `var(--font-lg)`,
-            textDecoration: `none`,
+            fontSize: "var(--font-lg)",
+            textDecoration: "none",
             display: "flex",
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <Logo />
-          <span style={{ marginLeft: "10px", color: theme.palette.text.primary }}>{siteTitle}</span>
+          <span style={{ marginLeft: "10px", color: theme.palette.text.primary }}>
+            {siteTitle}
+          </span>
         </Link>
         {isMobile ? (
           <>
@@ -113,15 +117,15 @@ const Header = ({ siteTitle, title }) => {
             </Drawer>
           </>
         ) : (
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "end", alignItems: "center" }}>
             <Link to="/">
               <Button
                 aria-label="Home"
                 sx={{
-                  color: theme.palette.text.primary,  // Apply dynamic text color
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem',
-                  textTransform: 'uppercase',
+                  color: theme.palette.text.primary,
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  textTransform: "uppercase"
                 }}
               >
                 HOME
@@ -131,10 +135,10 @@ const Header = ({ siteTitle, title }) => {
               <Button
                 aria-label="Blog"
                 sx={{
-                  color: theme.palette.text.primary,  // Apply dynamic text color
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem',
-                  textTransform: 'uppercase',
+                  color: theme.palette.text.primary,
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  textTransform: "uppercase"
                 }}
               >
                 Blog
@@ -144,10 +148,10 @@ const Header = ({ siteTitle, title }) => {
               <Button
                 aria-label="Projects"
                 sx={{
-                  color: theme.palette.text.primary,  // Apply dynamic text color
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem',
-                  textTransform: 'uppercase',
+                  color: theme.palette.text.primary,
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  textTransform: "uppercase"
                 }}
               >
                 Projects
@@ -157,10 +161,10 @@ const Header = ({ siteTitle, title }) => {
               <Button
                 aria-label="Contact"
                 sx={{
-                  color: theme.palette.text.primary,  // Apply dynamic text color
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem',
-                  textTransform: 'uppercase',
+                  color: theme.palette.text.primary,
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  textTransform: "uppercase"
                 }}
               >
                 Contact
@@ -173,42 +177,41 @@ const Header = ({ siteTitle, title }) => {
           anchorEl={anchorElNav}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "left",
+            horizontal: "left"
           }}
           keepMounted
           transformOrigin={{
             vertical: "top",
-            horizontal: "left",
+            horizontal: "left"
           }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
         >
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/" style={{ color: theme.palette.text.primary }}>Home</Link>
+            <Link to="/" style={{ color: theme.palette.text.primary }}>
+              Home
+            </Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/blog" style={{ color: theme.palette.text.primary }}>Blog</Link>
+            <Link to="/blog" style={{ color: theme.palette.text.primary }}>
+              Blog
+            </Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/projects" style={{ color: theme.palette.text.primary }}>Projects</Link>
+            <Link to="/projects" style={{ color: theme.palette.text.primary }}>
+              Projects
+            </Link>
           </MenuItem>
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link to="/contact" style={{ color: theme.palette.text.primary }}>Contact</Link>
+            <Link to="/contact" style={{ color: theme.palette.text.primary }}>
+              Contact
+            </Link>
           </MenuItem>
         </Menu>
       </Box>
-
       <Divider component="div" role="presentation">
         <Typography variant="overline">{title}</Typography>
       </Divider>
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="center"
-        sx={{ paddingRight: { xs: 0, sm: 5 } }}
-      >
-        <ThemeToggle />
-      </Box>
     </>
   );
 };

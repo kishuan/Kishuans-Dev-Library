@@ -19,7 +19,7 @@ function Contact() {
   return (
     <div>
       <IconButton size="large" onClick={handleOpen} color="inherit">
-        <MailOutlineIcon/> 
+        <MailOutlineIcon />
       </IconButton>
 
       <Modal
@@ -36,8 +36,8 @@ function Contact() {
             transform: "translate(-50%, -50%)",
             width: "95%",
             maxWidth: "90vw",
-            maxHeight: "90vh", // Set a maximum height for the modal
-            overflowY: "auto", // Enable vertical scrolling if content exceeds the height
+            maxHeight: "90vh",
+            overflowY: "auto",
             bgcolor: "background.paper",
             boxShadow: 24,
             p: { xs: 2, sm: 3, md: 4 },
@@ -65,12 +65,7 @@ function ContactForm() {
   const [state, handleSubmit] = useForm("xrgjewbb")
 
   if (state.succeeded) {
-    return (
-      // <Typography variant="h6">
-      //   Thank you for your message! I'll be in contact shortly.
-      // </Typography>
-      <Alert severity="success">Thanks!</Alert>
-    )
+    return <Alert severity="success">Thanks!</Alert>
   }
 
   return (
@@ -106,11 +101,7 @@ function ContactForm() {
           margin="normal"
           name="phoneNumber"
         />
-        <ValidationError
-          prefix="Phone Number"
-          field="phoneNumber"
-          errors={state.errors}
-        />
+        <ValidationError prefix="Phone Number" field="phoneNumber" errors={state.errors} />
         <TextField
           id="message"
           label="Message"
@@ -121,17 +112,13 @@ function ContactForm() {
           multiline
           rows={3}
         />
-        <ValidationError
-          prefix="Message"
-          field="message"
-          errors={state.errors}
-        />
+        <ValidationError prefix="Message" field="message" errors={state.errors} />
         <Button
           color="primary"
           variant="contained"
           type="submit"
           disabled={state.submitting}
-          sx={{ alignSelf: "flex-end" }} // Align the button to the right
+          sx={{ alignSelf: "flex-end" }}
         >
           Submit
         </Button>

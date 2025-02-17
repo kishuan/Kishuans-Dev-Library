@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Post from "./post.js"
 import Grid from "@mui/material/Grid"
 
-
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
     query ProfileQuery {
@@ -39,7 +38,7 @@ const AboutMe = () => {
   `)
 
   return (
-    <Grid container spacing={2} style={{ justifyContent: "center", alignItems: "center"}}>
+    <Grid container spacing={2} style={{ justifyContent: "center", alignItems: "center" }}>
       {data.allContentfulPost.nodes.map(post => (
         <Grid item xs={12} sm={12} md={9} key={post.id}>
           <Post
@@ -59,5 +58,4 @@ const AboutMe = () => {
 }
 
 export const Head = () => <Seo title="About Me" />
-
 export default AboutMe

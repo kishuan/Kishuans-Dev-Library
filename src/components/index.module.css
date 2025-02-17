@@ -17,7 +17,7 @@
   margin: 0;
 }
 
-.listItem::marker {
+/* .listItem::marker {
   color: #e95800;
 }
 
@@ -27,7 +27,7 @@
 
 .listItem:nth-child(3)::marker {
   color: #8eb814;
-}
+} */
 
 /* .listItem:nth-child(4)::marker {
   color: #663399;

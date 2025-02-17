@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-// Helper function to create slugs from titles
 const createSlug = (title) => {
   return title
     .toLowerCase()
@@ -15,7 +14,6 @@ const createSlug = (title) => {
     .replace(/(^-|-$)+/g, '');
 };
 
-// Helper function to truncate text for preview
 const truncateText = (text, maxLength) => {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + "...";
@@ -47,8 +45,11 @@ const BlogPosts = () => {
   return (
     <Grid container spacing={2} style={{ justifyContent: "center", alignItems: "center" }}>
       {data.allContentfulPost.nodes.map(post => {
-        const slug = createSlug(post.title); // Generate slug from title
-        const previewText = truncateText(JSON.parse(post.description.raw).content[0].content[0].value, 150); // Get preview text
+        const slug = createSlug(post.title);
+        const previewText = truncateText(
+          JSON.parse(post.description.raw).content[0].content[0].value,
+          150
+        );
 
         return (
           <Grid item xs={12} sm={12} md={9} key={post.id}>
@@ -59,7 +60,9 @@ const BlogPosts = () => {
                 {previewText}
               </Typography>
               <Link to={`/blog/${slug}`} style={{ textDecoration: "none" }}>
-                <Button variant="text" color="primary" size="medium">Read More<ChevronRightIcon />
+                <Button variant="text" color="primary" size="medium">
+                  Read More
+                  <ChevronRightIcon />
                 </Button>
               </Link>
             </Box>

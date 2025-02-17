@@ -10,20 +10,11 @@ function Contact() {
   return <ContactForm />
 }
 
-// Rest of your ContactForm remains the same
-
 function ContactForm() {
   const [state, handleSubmit] = useForm("xrgjewbb")
 
   if (state.succeeded) {
-    return (
-      // <Typography variant="h6">
-      //   Thank you for your message! I'll be in contact shortly.
-      // </Typography>
-      <Alert severity="success">
-        Thank you! Your submission has been sent.
-      </Alert>
-    )
+    return <Alert severity="success">Thank you! Your submission has been sent.</Alert>
   }
 
   return (
@@ -42,12 +33,7 @@ function ContactForm() {
           autoComplete="off"
           required
         />
-        <ValidationError
-          name="name"
-          prefix="Name"
-          field="name"
-          errors={state.errors}
-        />
+        <ValidationError name="name" prefix="Name" field="name" errors={state.errors} />
         <TextField
           id="email"
           label="Email Address"
@@ -59,12 +45,7 @@ function ContactForm() {
           autoComplete="off"
           required
         />
-        <ValidationError
-          name="email"
-          prefix="Email"
-          field="email"
-          errors={state.errors}
-        />
+        <ValidationError name="email" prefix="Email" field="email" errors={state.errors} />
         <TextField
           id="phoneNumber"
           label="Phone Number"
@@ -92,13 +73,7 @@ function ContactForm() {
           rows={3}
           required
         />
-        <ValidationError
-          id="message"
-          name="message"
-          prefix="Message"
-          field="message"
-          errors={state.errors}
-        />
+        <ValidationError id="message" name="message" prefix="Message" field="message" errors={state.errors} />
         <Button
           id="submit"
           name="submit"
