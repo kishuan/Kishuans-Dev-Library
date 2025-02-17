@@ -34,7 +34,13 @@ const Layout = ({ children, title }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <Box sx={{
+        minHeight: "100vh",
+        bgcolor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        display: "flex",
+        flexDirection: "column",
+      }}>
         <Header siteTitle={data.site.siteMetadata?.title || `My Site`} title={title} />
         <main>
           <Toolbar id="back-to-top-anchor" style={{ height: "0", minHeight: "0" }} />
